@@ -466,23 +466,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nomadia</title>
         </head>
-        <nav>
+            <nav>
             <a href="#" class="logo">Clem's Top Travel</a>
-            <ul>
+            
+            <!-- Le bouton Hamburger -->
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            
+            <!-- Votre menu -->
+            <ul id="nav-links">
                 <li><a href="#Plateforme">Plateforme</a></li>
                 <li><a href="#calendrier">Nouveautés</a></li>
-
-                <!-- Menu Déroulant Intégré -->
-               <li class="menu-deroulant">
-                    <a href="#">Comparatifs ▼</a> <!-- Lien parent (optionnel) -->
+                <li class="menu-deroulant">
+                    <a href="#">Comparatifs ▼</a>
                     <div class="contenu-menu">
-                        <!-- Ces liens vont maintenant sauter aux sections correspondantes -->
                         <a href="#comparatifs-travel-site">Travel site</a>
                         <a href="#comparatifs-world-tour">World Tour</a>
                         <a href="#comparatifs-gateway">Gateway</a>
                     </div>
                 </li>
-
                 <li><a href="#videos">Présentation</a></li>
                 <li><a href="#avis">Avis Clients</a></li>
                 <li><a href="#Témoignages">Témoignages</a></li>
@@ -708,7 +709,19 @@
             });
         });
     </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
 
+        // Ferme le menu si on clique sur un lien (pour ne pas rester bloqué)
+        document.querySelectorAll('#nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 
 </html>
