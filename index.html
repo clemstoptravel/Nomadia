@@ -37,9 +37,10 @@
             }
         .contenu-menu a {
             display: block; 
-            padding: 10px; 
             text-decoration: none; 
-            color: black; 
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
         }
         :root {
             --primary: #1a5f7a;
@@ -378,7 +379,13 @@
             <ul>
                 <li><a href="#Plateforme">Plateforme</a></li>
                 <li><a href="#calendrier">Nouveautés</a></li>
-                <li><a href="#comparatifs">Comparatifs</a></li>
+               <!--  <li><a href="#comparatifs">Comparatifs</a></li>-->
+                <li><a href="#comparatifs">Comparatifs ▼</a><li>
+                    <div class="contenu-menu">
+                        <a href="#Travel site">Travel site</a>
+                        <a href="#World Tour">Wrold Tour</a>
+                        <a href="#Gateway">Gateway</a>
+                    </div>
                 <li><a href="#videos">Présentation</a></li>
                 <li><a href="#avis">Avis Clients</a></li>
                 <li><a href="#Témoignages">Témoignages</a></li>
