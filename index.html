@@ -22,7 +22,34 @@
             font-weight: 700;
             font-style: normal;
         }
+        /* Empêche les images de dépasser de l'écran */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Par défaut (mobile), les éléments sont en colonne */
+        .calendar-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 10px;
+        }
 
+        /* Sur ordinateur (écran plus large), on remet en ligne si besoin */
+        @media (min-width: 768px) {
+            .calendar-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+        /* Assure que le corps de la page ne déborde pas */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
         /* --- MENU DÉROULANT --- */
         .menu-deroulant {
             position: relative;
@@ -393,6 +420,11 @@
 
     <!-- BARRE DE NAVIGATION -->
     <header>
+        <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomadia</title>
+        </head>
         <nav>
             <a href="#" class="logo">Clem's Top Travel</a>
             <ul>
