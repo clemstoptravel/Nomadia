@@ -38,13 +38,13 @@
 
         /* Sur ordinateur (écran plus large), on remet en ligne si besoin */
         /* Cache le menu complet sur mobile */
-        @media (max-width: 768px) {
-        /* Le menu est caché par défaut et ne prend plus de place */
+       @media (max-width: 768px) {
+    /* Le menu est caché par défaut */
         nav ul {
             display: none; 
             flex-direction: column;
-            position: absolute; /* S'affiche par-dessus */
-            top: 80px;          /* Juste en dessous de votre header */
+            position: absolute; 
+            top: 80px; 
             left: 0;
             width: 100%;
             background: var(--white);
@@ -53,12 +53,12 @@
             z-index: 999;
         }
 
-        /* Quand on ajoute la classe 'active', le menu s'affiche */
+        /* Affichage quand on clique */
         nav ul.active {
             display: flex;
         }
 
-        /* Le bouton hamburger devient obligatoire sur mobile */
+        /* Important : s'assurer que le menu toggle est visible */
         .menu-toggle {
             display: block;
             cursor: pointer;
@@ -460,38 +460,34 @@
 
 
     <!-- BARRE DE NAVIGATION -->
-    <header>
-        <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nomadia</title>
-        </head>
-            <nav>
-            <a href="#" class="logo">Clem's Top Travel</a>
-            
-            <!-- Le bouton Hamburger -->
-            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-            
-            <!-- Votre menu -->
-            <ul id="nav-links">
-                <li><a href="#Plateforme">Plateforme</a></li>
-                <li><a href="#calendrier">Nouveautés</a></li>
-                <li class="menu-deroulant">
-                    <a href="#">Comparatifs ▼</a>
-                    <div class="contenu-menu">
-                        <a href="#comparatifs-travel-site">Travel site</a>
-                        <a href="#comparatifs-world-tour">World Tour</a>
-                        <a href="#comparatifs-gateway">Gateway</a>
-                    </div>
-                </li>
-                <li><a href="#videos">Présentation</a></li>
-                <li><a href="#avis">Avis Clients</a></li>
-                <li><a href="#Témoignages">Témoignages</a></li>
-            </ul>
-        </nav>
-    </header>
-
+<header>
+    <nav>
+        <a href="#" class="logo">Clem's Top Travel</a>
+        
+        <!-- Le bouton Hamburger -->
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        
+        <!-- Votre menu -->
+        <ul id="nav-links">
+            <li><a href="#Plateforme">Plateforme</a></li>
+            <li><a href="#calendrier">Nouveautés</a></li>
+            <li class="menu-deroulant">
+                <a href="#">Comparatifs ▼</a>
+                <div class="contenu-menu">
+                    <a href="#comparatifs-travel-site">Travel site</a>
+                    <a href="#comparatifs-world-tour">World Tour</a>
+                    <a href="#comparatifs-gateway">Gateway</a>
+                </div>
+            </li>
+            <li><a href="#videos">Présentation</a></li>
+            <li><a href="#avis">Avis Clients</a></li>
+            <li><a href="#Témoignages">Témoignages</a></li>
+        </ul>
     </nav>
+</header>
+<!-- (La balise </nav> qui était ici a été supprimée) -->
+
+
     <!-- SECTION D'ACCUEIL -->
     <section class="hero">
         <h1>Prochain arrêt : L'Aventure</h1>
