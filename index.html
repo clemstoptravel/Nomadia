@@ -225,12 +225,14 @@
         }
 
         /* --- CARTE AVEC RATIO FIXE --- */
-        .trip-card, .review-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+        /* Règle universelle pour toutes les images dans les cartes */
+        .trip-card img, 
+        .review-card img {
+            width: 100%;          /* L'image prend toute la largeur du conteneur */
+            height: 300px;        /* Fixez une hauteur précise pour que toutes les cartes soient alignées */
+            object-fit: cover;    /* C'est LA règle magique : elle remplit le cadre en recadrant l'image sans l'écraser */
+            display: block;       /* Supprime le petit espace blanc sous l'image */
+            border-radius: 8px 8px 0 0; /* Arrondit uniquement le haut de l'image */
         }
 
         /* L'image prend 16/9 de l'espace de la carte */
