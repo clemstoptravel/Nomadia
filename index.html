@@ -37,11 +37,36 @@
         }
 
         /* Sur ordinateur (écran plus large), on remet en ligne si besoin */
-        @media (min-width: 768px) {
-            .calendar-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
+        /* Cache le menu complet sur mobile */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Cache les liens par défaut */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
             }
+
+            /* Affiche le menu quand on clique (via JavaScript) */
+            nav ul.active {
+                display: flex;
+            }
+
+            /* Ajout d'un bouton menu (hamburger) */
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+            }
+        }
+
+        /* Cache le bouton hamburger sur grand écran */
+        @media (min-width: 769px) {
+            .menu-toggle { display: none; }
         }
         /* Assure que le corps de la page ne déborde pas */
         body {
