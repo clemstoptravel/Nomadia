@@ -83,17 +83,22 @@
 
         .contenu-menu {
             display: none;
-            /* Caché par défaut */
             position: absolute;
             top: 100%;
             left: 0;
-            background: #b3f19a;
-            border: 1px solid #000000;
-            min-width: 150px;
+            background: #ffffff; /* Fond blanc plus propre */
+            border: 1px solid #ddd;
+            min-width: 140px; /* Un peu plus petit */
             z-index: 1001;
-            /* Pour passer au-dessus du reste */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 4px; /* Coins arrondis */
         }
 
+        /* Rendre les liens du menu plus compacts */
+        .contenu-menu a {
+            padding: 8px 12px; /* Réduit la hauteur des lignes */
+            font-size: 14px;   /* Texte légèrement plus petit */
+        }
         .menu-deroulant:hover .contenu-menu {
             display: block;
             /* S'affiche au survol */
@@ -193,10 +198,10 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            background: linear-gradient(rgba(26, 95, 122, 0), rgba(21, 152, 149, 0)), url('https://cdn.polyhaven.com/gallery/Rohit%20Modak_lakeside_HodC.jpg?width=1517&quality=95') no-repeat center center/cover;
-            max-width: 55%;
+            background: linear-gradient(rgba(26, 95, 122, 0.4), rgba(21, 152, 149, 0.4)), 
+                        url('https://cdn.polyhaven.com/gallery/Rohit%20Modak_lakeside_HodC.jpg?width=1517&quality=95') no-repeat center center/cover;
+            width: 100%;       /* Prend toute la largeur sur mobile */
             height: 60vh;
-            object-fit: contain;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -204,11 +209,19 @@
             text-align: center;
             color: var(--white);
             padding: 20px;
+            margin: 0 auto;    /* Centre la section */
+        }
+
+        /* Sur ordinateur, on limite la largeur pour garder l'esthétique */
+        @media (min-width: 769px) {
+            .hero {
+                max-width: 800px; /* Ou la largeur que vous préférez */
+            }
         }
 
         .hero h1 {
             font-family: var(--font-titles);
-            font-size: 56px;
+            font-size: clamp(32px, 8vw, 56px); /* La taille s'adapte automatiquement */
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
