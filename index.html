@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voyages et LIberté - Partez sans vous ruiner</title>
-    
+
     <!-- IMPORT GOOGLE FONTS (Oswald) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!--<link href="https://fonts.googleapis.com/css2?family=Oswald:wght=700&display=swap" rel="stylesheet">-->
-    
+
     <!-- IMPORT GOOGLE MATERIAL SYMBOLS (Icons) -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />" />-->
-  
+
     <style>
         /* --- VARIABLES & RESET --- */
         @font-face {
@@ -21,27 +22,44 @@
             font-weight: 700;
             font-style: normal;
         }
-        .menu-deroulant { 
-            position: relative; 
-            display: inline-block; 
+
+        /* --- MENU DÉROULANT --- */
+        .menu-deroulant {
+            position: relative;
+            display: inline-block;
         }
-        .contenu-menu { 
-            display: box; 
-            position: relative; 
-            background: rgb(179, 241, 154); 
-            border: 1px 
-            solid #000000; 
+
+        .contenu-menu {
+            display: none;
+            /* Caché par défaut */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #b3f19a;
+            border: 1px solid #000000;
+            min-width: 150px;
+            z-index: 1001;
+            /* Pour passer au-dessus du reste */
         }
+
         .menu-deroulant:hover .contenu-menu {
-             display: block; 
-            }
+            display: block;
+            /* S'affiche au survol */
+        }
+
         .contenu-menu a {
-            display: block; 
-            text-decoration: none; 
+            display: block;
+            padding: 10px;
+            text-decoration: none;
             color: var(--text);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: background 0.3s;
         }
+
+        .contenu-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
         :root {
             --primary: #1a5f7a;
             --secondary: #57c5b6;
@@ -94,7 +112,7 @@
             text-transform: uppercase;
             transition: transform 0.3s ease, color 0.3s ease;
         }
-        
+
         nav .logo:hover {
             color: var(--secondary);
             transform: scale(1.05);
@@ -173,38 +191,30 @@
             background-color: var(--secondary);
             margin: 10px auto 0;
         }
+
         section h3 {
             font-size: 20px;
 
             margin-bottom: 20px;
-        }    
+        }
 
-         section h4 {
-            display: flex;
+        .plateforme-content p {
+            margin-bottom: 15px;
             text-align: justify;
-            full-size: 10px;
-            font-weight: normal;
-            text-transform: none;
-            letter-spacing: 1px;
-            color: black;
-            margin-bottom: 10px;
-            position: relative;
+            line-height: 1.6;
         }
 
-         section h5 {
-            padding-left: 40px;
-            display: flex;
-            font-size: 100%;
-            full-size: 20px;
-            font-style: italic;
-            font-weight: normal;
-            text-transform: capitalize;
-            letter-spacing: 1px;
-            color: black;
+        .plateforme-content ul {
+            margin: 15px 0 25px 40px;
+            /* Ajoute un retrait pour la liste */
+        }
+
+        .plateforme-content li {
             margin-bottom: 5px;
-            position: relative;
-
+            font-style: italic;
+            /* Pour garder l'effet que vous aviez sur vos h5 */
         }
+
         /* --- STYLE DU BOUTON MATERIAL ICON --- */
         .btn-icon {
             display: inline-flex;
@@ -245,7 +255,7 @@
             background: var(--white);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
         }
 
@@ -256,8 +266,9 @@
             display: block;
             border-radius: 8px;
             margin-bottom: 15px;
-          
+
         }
+
         .trip-card:hover {
             transform: translateY(-5px);
         }
@@ -298,7 +309,9 @@
         }
 
         @media (max-width: 500px) {
-            .video-grid { grid-template-columns: 1fr; }
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .video-container {
@@ -307,7 +320,7 @@
             height: 0;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .video-container iframe {
@@ -321,7 +334,7 @@
 
         /* --- AVIS CLIENTS --- */
 
-      
+
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -333,10 +346,10 @@
             background: var(--white);
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border-left: 5px solid var(--secondary);
         }
-      
+
         .review-card img {
             max-width: 100%;
             height: auto;
@@ -344,8 +357,9 @@
             display: block;
             border-radius: 8px;
             margin-bottom: 15px;
-          
+
         }
+
         .review-text {
             font-style: italic;
             margin-bottom: 15px;
@@ -368,6 +382,7 @@
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
@@ -379,27 +394,23 @@
             <ul>
                 <li><a href="#Plateforme">Plateforme</a></li>
                 <li><a href="#calendrier">Nouveautés</a></li>
-               <!--  <li><a href="#comparatifs">Comparatifs</a></li>-->
-                <li><a href="#comparatifs">Comparatifs ▼</a><li>
+
+                <!-- Menu Déroulant Intégré -->
+                <li class="menu-deroulant">
+                    <a href="#comparatifs">Comparatifs ▼</a>
                     <div class="contenu-menu">
-                        <a href="#Travel site">Travel site</a>
-                        <a href="#World Tour">Wrold Tour</a>
-                        <a href="#Gateway">Gateway</a>
+                        <a href="#comparatifs">Travel site</a>
+                        <a href="#comparatifs">World Tour</a>
+                        <a href="#comparatifs">Gateway</a>
                     </div>
+                </li>
+
                 <li><a href="#videos">Présentation</a></li>
                 <li><a href="#avis">Avis Clients</a></li>
                 <li><a href="#Témoignages">Témoignages</a></li>
             </ul>
         </nav>
     </header>
-
-    <nav class="menu-deroulant">
-        <a href="#comparatifs">Comparatifs ▼</a>
-        <div class="contenu-menu">
-            <a href="#Travel site">Travel site</a>
-            <a href="#World Tour">Wrold Tour</a>
-            <a href="#Gateway">Gateway</a>
-        </div>
 
     </nav>
     <!-- SECTION D'ACCUEIL -->
@@ -414,33 +425,36 @@
             <img src="icones/travel.webp" alt="Icône plateforme" width="24" height="24">
         </button>
         <h2>Qui sommes-nous ?</h2>
-        
-        <div class="Plateforme-grid">
-        <h4>Notre plateforme de voyage privée vous permet de réserver facilement tous vos séjours et prestations touristiques, comme vous le faites sur les grandes plateformes de réservation.
-        <h4>Vous y trouverez une offre complète : <h4>
-            <h5>
-          </ul>      
-                <li><h5>Hôtels</li><h5>
-                <li><h5>Locations de vacances</li><h5>
-                <li><h5>Locations de voitures</li><h5>
-                <li><h5>Croisières</li><h5>
-                <li><h5>Excursions et activités</li><h5>
-                <li><h5>Vols long-courriers</li><h5>
-            
-         </ul>
-         </h5>
-        <h4>Créée en 2013, notre plateforme est aujourd'hui présente dans plus de 73 pays et rassemble une communauté internationale de voyageurs.
 
-        <h4>Elle s'adresse aussi bien aux personnes souhaitant simplement profiter des avantages de la plateforme qu'à celles qui désirent développer une activité autour du voyage.
+        <div class="plateforme-content">
+            <p>Notre plateforme de voyage privée vous permet de réserver facilement tous vos séjours et prestations
+                touristiques, comme vous le faites sur les grandes plateformes de réservation.</p>
 
-        <h4>Deux possibilités s'offrent à vous :
+            <p>Vous y trouverez une offre complète :</p>
+            <ul>
+                <li>Hôtels</li>
+                <li>Locations de vacances</li>
+                <li>Locations de voitures</li>
+                <li>Croisières</li>
+                <li>Excursions et activités</li>
+                <li>Vols long-courriers</li>
+            </ul>
 
-        <h4>Client
-        <h4>Accédez à la plateforme et profitez de ses avantages pour organiser vos voyages.
+            <p>Créée en 2013, notre plateforme est aujourd'hui présente dans plus de 73 pays et rassemble une communauté
+                internationale de voyageurs.</p>
+            <p>Elle s'adresse aussi bien aux personnes souhaitant simplement profiter des avantages de la plateforme
+                qu'à celles qui désirent développer une activité autour du voyage.</p>
 
-        <h4>Partenaire
-        <h4>Bénéficiez des mêmes avantages tout en ayant la possibilité de développer une activité en recommandant la plateforme et de percevoir une rémunération selon votre implication.
+            <p><strong>Deux possibilités s'offrent à vous :</strong></p>
+
+            <p><strong>Client</strong><br>
+                Accédez à la plateforme et profitez de ses avantages pour organiser vos voyages.</p>
+
+            <p><strong>Partenaire</strong><br>
+                Bénéficiez des mêmes avantages tout en ayant la possibilité de développer une activité en recommandant
+                la plateforme et de percevoir une rémunération selon votre implication.</p>
         </div>
+    </section>
 
     <!-- SECTION CALENDRIER DES VOYAGES -->
     <section id="calendrier">
@@ -448,52 +462,44 @@
             <img src="icones/explore.webp" alt="Icône voyage" width="24" height="24">
         </button>
         <h2>Calendrier des Prochains Voyages WORLD TOURS</h2>
-        
+
         <div class="calendar-grid">
             <div class="trip-card">
-                <img id="review-image-maui"
-                 src="./assets\maui.webp"
-                 alt="Maui" class="review-box">
+                <img id="review-image-maui" src="./assets\maui.webp" alt="Maui" class="review-box">
             </div>
 
             <div class="trip-card">
-                <img id="review-image-costa mujeres"
-                 src="./assets\costa mujeres.webp"
-                 alt="Costa mujeres" class="review-box">
+                <img id="review-image-costa mujeres" src="./assets\costa mujeres.webp" alt="Costa mujeres"
+                    class="review-box">
             </div>
 
             <div class="trip-card">
-                <img id="review-image-Prague"
-                 src="./assets\Prague.webp"
-                 alt="Prague" class="review-box">
+                <img id="review-image-Prague" src="./assets\Prague.webp" alt="Prague" class="review-box">
             </div>
         </div>
     </section>
 
-     <!-- SECTION COMPARATIFS -->
+    <!-- SECTION COMPARATIFS -->
     <section id="comparatifs">
         <button class="btn-icon" data-target="Comparatifs">
             <img src="icones/balance.webp" alt="Icône comparaison" width="24" height="24">
         </button>
         <h2>Nos économies en Travel site</h2>
-        
+
         <div class="calendar-grid">
             <div class="trip-card">
-                <img id="review-image-Travel site Logement Cancun"
-                 src="./assets\Travel site logement Cancun.webp"
-                 alt="Cancun" class="review-box">
+                <img id="review-image-Travel site Logement Cancun" src="./assets\Travel site logement Cancun.webp"
+                    alt="Cancun" class="review-box">
             </div>
 
             <div class="trip-card">
-                <img id="review-image-Travel site Croisière Grèce"
-                 src="./assets\Travel site Croisière Grèce.webp"
-                 alt="Croisière" class="review-box">
+                <img id="review-image-Travel site Croisière Grèce" src="./assets\Travel site Croisière Grèce.webp"
+                    alt="Croisière" class="review-box">
             </div>
 
             <div class="trip-card">
                 <img id="review-image-Travel site Bali River activité"
-                 src="./assets\Travel site Bali River activité.webp"
-                 alt="Activité" class="review-box">
+                    src="./assets\Travel site Bali River activité.webp" alt="Activité" class="review-box">
             </div>
         </div>
     </section>
@@ -504,10 +510,12 @@
             <img src="icones/play_circle.webp" alt="Icône presentation" width="24" height="24">
         </button>
         <h2>Notre présentation en replay</h2>
-        
+
         <div class="video-grid">
             <div class="video-container">
-                <iframe src="https://cdfab0db.sibforms.com/serve/MUIFADfcuL7dJYmkZsIKZGKOFiyolzKwkURCuqt8WSo90AJri6u865LUZf8ng3vTrFzdBksonr6lqxCZUv2Aywys9wnr-p0rPEgND-CgnZkvoF9NPdIYN8RrTMsY9BEtAzOI3L7-E5xDCU1HXotY7HzdfPoRVJ2S3SohvkG8_VoHFLjcra_RtBJA3734hRHTMy3SjXfhgfr8SGjF" title="Lien Présentation replay" allowfullscreen></iframe>
+                <iframe
+                    src="https://cdfab0db.sibforms.com/serve/MUIFADfcuL7dJYmkZsIKZGKOFiyolzKwkURCuqt8WSo90AJri6u865LUZf8ng3vTrFzdBksonr6lqxCZUv2Aywys9wnr-p0rPEgND-CgnZkvoF9NPdIYN8RrTMsY9BEtAzOI3L7-E5xDCU1HXotY7HzdfPoRVJ2S3SohvkG8_VoHFLjcra_RtBJA3734hRHTMy3SjXfhgfr8SGjF"
+                    title="Lien Présentation replay" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -518,24 +526,18 @@
             <img src="icones/rate_review.webp" alt="Icône avis" width="24" height="24">
         </button>
         <h2>Ce que disent nos voyageurs</h2>
-        
+
         <div class="reviews-grid">
             <div class="review-card">
-                <img id="review-image-Agathe"
-                 src="./assets\Agathe - Albanie.webp"
-                 alt="Avis Agathe" class="review-box">
+                <img id="review-image-Agathe" src="./assets\Agathe - Albanie.webp" alt="Avis Agathe" class="review-box">
             </div>
 
             <div class="review-card">
-                <img id="review-image-Amélie"
-                 src="./assets\Amélie - Grèce.webp"
-                 alt="Avis Amélie" class="review-box">
+                <img id="review-image-Amélie" src="./assets\Amélie - Grèce.webp" alt="Avis Amélie" class="review-box">
             </div>
 
             <div class="review-card">
-                <img id="review-image-Emma"
-                 src="./assets\Emma - Prague.webp"
-                 alt="Avis Emma" class="review-box">
+                <img id="review-image-Emma" src="./assets\Emma - Prague.webp" alt="Avis Emma" class="review-box">
             </div>
         </div>
     </section>
@@ -546,24 +548,18 @@
             <img src="icones/chat.webp" alt="Icône témoignage" width="24" height="24">
         </button>
         <h2>D'où viennent nos partenaires</h2>
-        
+
         <div class="reviews-grid">
             <div class="review-card">
-                <img id="review-image-Laurie S"
-                 src="./assets\Laurie S.webp"
-                 alt="Témoignage Laurie" class="review-box">
+                <img id="review-image-Laurie S" src="./assets\Laurie S.webp" alt="Témoignage Laurie" class="review-box">
             </div>
 
             <div class="review-card">
-                <img id="review-image-Félix"
-                 src="./assets\Félix.webp"
-                 alt="Témoignage Félix" class="review-box">
+                <img id="review-image-Félix" src="./assets\Félix.webp" alt="Témoignage Félix" class="review-box">
             </div>
 
             <div class="review-card">
-                <img id="review-image-Armelle"
-                 src="./assets\Armelle.webp"
-                 alt="Témoignage Armelle" class="review-box">
+                <img id="review-image-Armelle" src="./assets\Armelle.webp" alt="Témoignage Armelle" class="review-box">
             </div>
         </div>
     </section>
@@ -587,4 +583,5 @@
     </script>
 
 </body>
+
 </html>
