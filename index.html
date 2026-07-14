@@ -47,6 +47,10 @@
             /* S'affiche au survol */
         }
 
+        section {
+            /* Cela ajoute un espace invisible au-dessus de la section quand on clique sur un lien */
+            scroll-margin-top: 100px; 
+        }
         .contenu-menu a {
             display: block;
             padding: 10px;
@@ -396,12 +400,13 @@
                 <li><a href="#calendrier">Nouveautés</a></li>
 
                 <!-- Menu Déroulant Intégré -->
-                <li class="menu-deroulant">
-                    <a href="#comparatifs">Comparatifs ▼</a>
+               <li class="menu-deroulant">
+                    <a href="#">Comparatifs ▼</a> <!-- Lien parent (optionnel) -->
                     <div class="contenu-menu">
-                        <a href="#comparatifs">Travel site</a>
-                        <a href="#comparatifs">World Tour</a>
-                        <a href="#comparatifs">Gateway</a>
+                        <!-- Ces liens vont maintenant sauter aux sections correspondantes -->
+                        <a href="#comparatifs-travel-site">Travel site</a>
+                        <a href="#comparatifs-world-tour">World Tour</a>
+                        <a href="#comparatifs-gateway">Gateway</a>
                     </div>
                 </li>
 
@@ -480,12 +485,11 @@
     </section>
 
     <!-- SECTION COMPARATIFS -->
-    <section id="comparatifs">
-         <button class="btn-icon" data-target="Comparatifs">
-            <img src="icones/balance.webp" alt="Icône comparaison" width="24" height="24">
-        </button>
         <!-- Votre section existante -->
-        <section id="comparatifs-travel-site">
+    <section id="comparatifs-travel-site">
+        <button class="btn-icon" data-target="comparatifs-travel-site">
+        <img src="icones/balance.webp" alt="Icône comparaison" width="24" height="24">
+        </button>
         <h2>Nos économies en Travel site</h2>
 
             <div class="calendar-grid">
@@ -504,12 +508,12 @@
                         src="./assets\Travel site Bali River activité.webp" alt="Activité" class="review-box">
                 </div>
             </div>
-        </section>
+    </section>
 
         <!-- Ajoutez ces deux nouvelles sections en bas de votre page -->
-        <section id="comparatifs-world-tour">
-        <h2>Nos économies en World Tour</h2>
-                   <div class="calendar-grid">
+    <section id="comparatifs-world-tour">
+    <h2>Nos économies en World Tour</h2>
+            <div class="calendar-grid">
                 <div class="trip-card">
                     <img id="review-image-Worldtour Colombie" src="./assets\Worldtour Colombie.webp"
                         alt="Worldtour Colombie" class="review-box">
@@ -526,15 +530,15 @@
                         alt="Worldtour Doha" class="review-box">
                 </div>
             </div>
-        </section>
+    </section>
 
-        <section id="comparatifs-gateway">
-        <h2>Nos économies en Gateway</h2>
+    <section id="comparatifs-gateway">
+    <h2>Nos économies en Gateway</h2>
                    <div class="calendar-grid">
                 <div class="trip-card">
-                    <img id="review-image-Gateway Afrique du Sud" 
-                    src="./assets\Gateway Afrique du Sud.webp"
-                        alt="Gateway Afrique du Sud" class="review-box">
+                    <img id="review-image-Gateway Afrique Du Sud" 
+                    src="./assets\Gateway Afrique Du Sud.webp"
+                        alt="Gateway Afrique Du Sud" class="review-box">
                 </div>
 
                 <div class="trip-card">
@@ -549,7 +553,7 @@
                         alt="image-Gateway Angleterre" class="review-box">
                 </div>
             </div>
-        </section>
+    </section>
        
         
     </section>
