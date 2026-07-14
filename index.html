@@ -1,730 +1,748 @@
+Aucun élément sélectionné 
+
+Aller au contenu
+Utiliser Gmail avec un lecteur d'écran
+1 sur 4 286
+Script
+Boîte de réception
+
+Quentin MONGEY
+18:36 (il y a 8 minutes)
+À moi
+
+Ce message semble être en anglais
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voyages et LIberté - Partez sans vous ruiner</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyages et LIberté - Partez sans vous ruiner</title>
 
-    <!-- IMPORT GOOGLE FONTS (Oswald) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!--<link href="https://fonts.googleapis.com/css2?family=Oswald:wght=700&display=swap" rel="stylesheet">-->
+<!-- IMPORT GOOGLE FONTS (Oswald) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--<link href="https://fonts.googleapis.com/css2?family=Oswald:wght=700&display=swap" rel="stylesheet">-->
 
-    <!-- IMPORT GOOGLE MATERIAL SYMBOLS (Icons) -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />" />-->
+<!-- IMPORT GOOGLE MATERIAL SYMBOLS (Icons) -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />" />-->
 
-    <style>
-        /* --- VARIABLES & RESET --- */
-        @font-face {
-            font-family: 'Oswald';
-            src: url('fonts/Oswald-VariableFont_wght.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-        }
-        /* Empêche les images de dépasser de l'écran */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+<style>
+/* --- VARIABLES & RESET --- */
+@font-face {
+font-family: 'Oswald';
+src: url('fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+font-weight: 700;
+font-style: normal;
+}
+/* Empêche les images de dépasser de l'écran */
+img {
+max-width: 100%;
+height: auto;
+display: block;
+}
+/* Par défaut (mobile), les éléments sont en colonne */
+.calendar-grid {
+display: flex;
+flex-direction: column;
+gap: 20px;
+padding: 10px;
+}
 
-        /* Sur ordinateur (écran plus large), on remet en ligne si besoin */
-        /* Cache le menu complet sur mobile */
-      @media (max-width: 768px) {
-    /* Cache le menu par défaut */
-        nav ul {
-            display: none !important; /* !important force le masquage */
-            flex-direction: column;
-            position: absolute;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
+/* --- RESPONSIVITÉ DU HEADER --- */
+/* Cache le menu complet sur mobile et tablette (pour inclure le paysage) */
+@media (max-width: 1024px) {
+/* Cache le menu par défaut */
+nav ul {
+display: none !important; /* !important force le masquage */
+flex-direction: column;
+position: absolute;
+top: 80px;
+left: 0;
+width: 100%;
+background: white;
+box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+z-index: 999;
+padding: 20px 0;
+text-align: center;
+gap: 15px; /* Espace entre les boutons sur mobile */
+}
 
-        /* Affiche le menu quand on ajoute la classe active */
-        nav ul.active {
-            display: flex !important; /* !important force l'affichage au clic */
-        }
-    }
+/* Affiche le menu quand on ajoute la classe active */
+nav ul.active {
+display: flex !important; /* !important force l'affichage au clic */
+}
 
-        /* Important : s'assurer que le menu toggle est visible */
-        .menu-toggle {
-            display: block;
-            cursor: pointer;
-            font-size: 30px;
-            color: var(--primary);
-        }
-    }
+/* Important : s'assurer que le menu toggle est visible */
+.menu-toggle {
+display: block;
+cursor: pointer;
+font-size: 30px;
+color: var(--primary);
+}
+}
 
-        /* Cache le bouton hamburger sur grand écran */
-        @media (min-width: 769px) {
-            .menu-toggle { display: none; }
-        }
-        /* Assure que le corps de la page ne déborde pas */
-        body {
-            overflow-x: hidden;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        /* --- MENU DÉROULANT --- */
-        .menu-deroulant {
-            position: relative;
-            display: inline-block;
-        }
+/* Cache le bouton hamburger sur grand écran */
+@media (min-width: 1025px) {
+.menu-toggle { display: none; }
+}
 
-        .contenu-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #ffffff; /* Fond blanc plus propre */
-            border: 1px solid #ddd;
-            min-width: 140px; /* Un peu plus petit */
-            z-index: 1001;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-radius: 4px; /* Coins arrondis */
-        }
+/* Assure que le corps de la page ne déborde pas */
+body {
+overflow-x: hidden;
+width: 100%;
+margin: 0;
+padding: 0;
+}
+/* --- MENU DÉROULANT --- */
+.menu-deroulant {
+position: relative;
+display: inline-block;
+}
 
-        /* Rendre les liens du menu plus compacts */
-        .contenu-menu a {
-            padding: 8px 12px; /* Réduit la hauteur des lignes */
-            font-size: 14px;   /* Texte légèrement plus petit */
-        }
-        .menu-deroulant:hover .contenu-menu {
-            display: block;
-            /* S'affiche au survol */
-        }
+.contenu-menu {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background: #ffffff; /* Fond blanc plus propre */
+border: 1px solid #ddd;
+min-width: 140px; /* Un peu plus petit */
+z-index: 1001;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+border-radius: 4px; /* Coins arrondis */
+}
 
-        section {
-            /* Cela ajoute un espace invisible au-dessus de la section quand on clique sur un lien */
-            scroll-margin-top: 100px; 
-        }
-        .contenu-menu a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: background 0.3s;
-        }
+/* Rendre les liens du menu plus compacts */
+.contenu-menu a {
+padding: 8px 12px; /* Réduit la hauteur des lignes */
+font-size: 14px; /* Texte légèrement plus petit */
+}
+.menu-deroulant:hover .contenu-menu {
+display: block;
+/* S'affiche au survol */
+}
 
-        .contenu-menu a:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
+section {
+/* Cela ajoute un espace invisible au-dessus de la section quand on clique sur un lien */
+scroll-margin-top: 100px;
+}
+.contenu-menu a {
+display: block;
+padding: 10px;
+text-decoration: none;
+color: var(--text);
+font-weight: 500;
+transition: background 0.3s;
+}
 
-        :root {
-            --primary: #1a5f7a;
-            --secondary: #57c5b6;
-            --dark: #159895;
-            --light: #f5f9f9;
-            --text: #2c3e50;
-            --white: #ffffff;
-            --font-titles: 'Oswald', 'Impact', 'Arial Black', sans-serif;
-        }
+.contenu-menu a:hover {
+background-color: rgba(255, 255, 255, 0.5);
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
+:root {
+--primary: #1a5f7a;
+--secondary: #57c5b6;
+--dark: #159895;
+--light: #f5f9f9;
+--text: #2c3e50;
+--white: #ffffff;
+--font-titles: 'Oswald', 'Impact', 'Arial Black', sans-serif;
+}
 
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-            font-family: 'Oswald', sans-serif;
-        }
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+scroll-behavior: smooth;
+}
 
-        /* --- NAVIGATION --- */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            /* Supprimez "position: sticky;" ici pour qu'il soit par défaut en normal */
-            width: 100%;
-            z-index: 1000;
-        }
+body {
+background-color: var(--light);
+color: var(--text);
+line-height: 1.6;
+font-family: 'Oswald', sans-serif;
+}
 
-        /* Si vous voulez qu'il soit sticky UNIQUEMENT sur ordinateur */
-        @media (min-width: 769px) {
-            header {
-                position: sticky;
-                top: 0;
-            }
-        }
+/* --- NAVIGATION --- */
+header {
+background-color: var(--white);
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Supprimez "position: sticky;" ici pour qu'il soit par défaut en normal */
+width: 100%;
+z-index: 1000;
+}
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* Si vous voulez qu'il soit sticky UNIQUEMENT sur ordinateur */
+@media (min-width: 1025px) {
+header {
+position: sticky;
+top: 0;
+}
+}
 
-        nav .logo {
-            font-family: var(--font-titles);
-            font-size: 28px;
-            letter-spacing: 1px;
-            color: var(--primary);
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
+nav {
+max-width: 1200px;
+margin: 0 auto;
+padding: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
 
-        nav .logo:hover {
-            color: var(--secondary);
-            transform: scale(1.05);
-        }
+nav .logo {
+font-family: var(--font-titles);
+font-size: 28px;
+letter-spacing: 1px;
+color: var(--primary);
+text-decoration: none;
+text-transform: uppercase;
+transition: transform 0.3s ease, color 0.3s ease;
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
+nav .logo:hover {
+color: var(--secondary);
+transform: scale(1.05);
+}
 
-        nav ul a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+nav ul {
+display: flex;
+list-style: none;
+gap: 20px;
+}
 
-        nav ul a:hover {
-            color: var(--secondary);
-        }
+nav ul a {
+text-decoration: none;
+color: var(--text);
+font-weight: 500;
+transition: color 0.3s;
+}
 
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(rgba(26, 95, 122, 0.4), rgba(21, 152, 149, 0.4)), 
-                        url('https://cdn.polyhaven.com/gallery/Rohit%20Modak_lakeside_HodC.jpg?width=1517&quality=95') no-repeat center center/cover;
-            width: 100%;       /* Prend toute la largeur sur mobile */
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-            padding: 20px;
-            margin: 0 auto;    /* Centre la section */
-        }
-        /* --- GRILLE UNIVERSELLE RESPONSIVE --- */
-        .grid-container {
-            display: grid;
-            /* La grille s'adapte toute seule au nombre d'éléments */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
+nav ul a:hover {
+color: var(--secondary);
+}
 
-        /* --- CARTE AVEC RATIO FIXE --- */
-        /* Règle universelle pour toutes les images dans les cartes */
-        .trip-card img, 
-        .review-card img {
-            width: 100%;          /* L'image prend toute la largeur du conteneur */
-            height: 300px;        /* Fixez une hauteur précise pour que toutes les cartes soient alignées */
-            object-fit: cover;    /* C'est LA règle magique : elle remplit le cadre en recadrant l'image sans l'écraser */
-            display: block;       /* Supprime le petit espace blanc sous l'image */
-            border-radius: 8px 8px 0 0; /* Arrondit uniquement le haut de l'image */
-        }
+/* --- HERO SECTION --- */
+.hero {
+background: linear-gradient(rgba(26, 95, 122, 0.4), rgba(21, 152, 149, 0.4)),
+url('https://cdn.polyhaven.com/gallery/Rohit%20Modak_lakeside_HodC.jpg?width=1517&quality=95') no-repeat center center/cover;
+width: 100%; /* Prend toute la largeur sur mobile */
+height: 60vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+color: var(--white);
+padding: 20px;
+margin: 0 auto; /* Centre la section */
+}
 
-        /* L'image prend 16/9 de l'espace de la carte */
-        .trip-card img, .review-card img {
-            width: 100%;
-            aspect-ratio: 16 / 9; /* Garantit que toutes les images ont la même forme */
-            object-fit: cover;    /* L'image se recadre proprement sans se déformer */
-        }
-        /* Sur ordinateur, on limite la largeur pour garder l'esthétique */
-        @media (min-width: 769px) {
-            .hero {
-                max-width: 800px; /* Ou la largeur que vous préférez */
-            }
-        }
+/* Sur ordinateur, on limite la largeur pour garder l'esthétique */
+@media (min-width: 769px) {
+.hero {
+max-width: 800px; /* Ou la largeur que vous préférez */
+}
+}
 
-        .hero h1 {
-            font-family: var(--font-titles);
-            font-size: clamp(32px, 8vw, 56px); /* La taille s'adapte automatiquement */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
+.hero h1 {
+font-family: var(--font-titles);
+font-size: clamp(32px, 8vw, 56px); /* La taille s'adapte automatiquement */
+text-transform: uppercase;
+letter-spacing: 2px;
+margin-bottom: 10px;
+}
 
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
+.hero p {
+font-size: 20px;
+margin-bottom: 20px;
+}
 
-        /* --- SECTION STRUCTURE --- */
-        section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
+/* --- SECTION STRUCTURE --- */
+section {
+max-width: 1200px;
+margin: 60px auto;
+padding: 0 20px;
+text-align: center;
+}
 
-        section h2 {
-            font-family: var(--font-titles);
-            font-size: 36px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primary);
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
+section h2 {
+font-family: var(--font-titles);
+font-size: 36px;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: var(--primary);
+margin-bottom: 40px;
+position: relative;
+display: inline-block;
+width: 100%;
+}
 
-        section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--secondary);
-            margin: 10px auto 0;
-        }
+section h2::after {
+content: '';
+display: block;
+width: 60px;
+height: 4px;
+background-color: var(--secondary);
+margin: 10px auto 0;
+}
 
-        section h3 {
-            font-size: 20px;
+section h3 {
+font-size: 20px;
 
-            margin-bottom: 20px;
-        }
+margin-bottom: 20px;
+}
 
-        .plateforme-content p {
-            margin-bottom: 15px;
-            text-align: justify;
-            line-height: 1.6;
-        }
+.plateforme-content p {
+margin-bottom: 15px;
+text-align: justify;
+line-height: 1.6;
+}
 
-        .plateforme-content ul {
-            margin: 15px 0 25px 40px;
-            /* Ajoute un retrait pour la liste */
-        }
+.plateforme-content ul {
+margin: 15px 0 25px 40px;
+/* Ajoute un retrait pour la liste */
+}
 
-        .plateforme-content li {
-            margin-bottom: 5px;
-            font-style: italic;
-            /* Pour garder l'effet que vous aviez sur vos h5 */
-        }
+.plateforme-content li {
+margin-bottom: 5px;
+font-style: italic;
+/* Pour garder l'effet que vous aviez sur vos h5 */
+}
 
-        /* --- STYLE DU BOUTON MATERIAL ICON --- */
-        .btn-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            transition: background-color 0.3s, transform 0.2s;
-        }
+/* --- STYLE DU BOUTON MATERIAL ICON --- */
+.btn-icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+background-color: var(--primary);
+color: var(--white);
+border: none;
+border-radius: 50%;
+width: 50px;
+height: 50px;
+margin-bottom: 15px;
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+transition: background-color 0.3s, transform 0.2s;
+}
 
-        .btn-icon:hover {
-            background-color: var(--secondary);
-            transform: scale(1.05);
-        }
+.btn-icon:hover {
+background-color: var(--secondary);
+transform: scale(1.05);
+}
 
-        .btn-icon .material-symbols-outlined {
-            font-size: 28px;
+.btn-icon .material-symbols-outlined {
+font-size: 28px;
 
-        }
+}
 
 
-        /* --- CALENDRIER (GRID) --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            text-align: left;
-        }
+/* --- CALENDRIER (GRID) --- */
+.calendar-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+text-align: left;
+}
 
-        .trip-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
+.trip-card {
+background: var(--white);
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+transition: transform 0.3s;
+}
 
-        .trip-card img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            display: block;
-            border-radius: 8px;
-            margin-bottom: 15px;
+.trip-card img {
+max-width: 100%;
+height: auto;
+object-fit: contain;
+display: block;
+border-radius: 8px;
+margin-bottom: 15px;
 
-        }
+}
 
-        .trip-card:hover {
-            transform: translateY(-5px);
-        }
+.trip-card:hover {
+transform: translateY(-5px);
+}
 
-        .trip-date {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 14px;
-        }
+.trip-date {
+background-color: var(--primary);
+color: var(--white);
+padding: 10px 15px;
+font-weight: bold;
+font-size: 14px;
+}
 
-        .trip-content {
-            padding: 20px;
-        }
+.trip-content {
+padding: 20px;
+}
 
-        .trip-content h3 {
-            font-family: var(--font-titles);
-            font-size: 22px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
+.trip-content h3 {
+font-family: var(--font-titles);
+font-size: 22px;
+text-transform: uppercase;
+margin-bottom: 10px;
+color: var(--primary);
+}
 
-        .trip-price {
-            display: block;
-            font-family: var(--font-titles);
-            font-size: 24px;
-            color: var(--dark);
-            margin-top: 15px;
-        }
+.trip-price {
+display: block;
+font-family: var(--font-titles);
+font-size: 24px;
+color: var(--dark);
+margin-top: 15px;
+}
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+/* --- VIDEOS (GRID) --- */
+.video-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+gap: 30px;
+}
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+@media (max-width: 500px) {
+.video-grid {
+grid-template-columns: 1fr;
+}
+}
 
-        /* --- AVIS CLIENTS --- */
+.video-container {
+position: relative;
+padding-bottom: 56.25%;
+height: 0;
+overflow: hidden;
+border-radius: 10px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.video-container iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: 0;
+}
+
+/* --- AVIS CLIENTS --- */
 
 
+.reviews-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+text-align: left;
+}
 
-        .review-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid var(--secondary);
-        }
+.review-card {
+background: var(--white);
+padding: 30px;
+border-radius: 10px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+border-left: 5px solid var(--secondary);
+}
 
-        .review-card img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            display: block;
-            border-radius: 8px;
-            margin-bottom: 15px;
+.review-card img {
+max-width: 100%;
+height: auto;
+object-fit: contain;
+display: block;
+border-radius: 8px;
+margin-bottom: 15px;
 
-        }
+}
 
-        .review-text {
-            font-style: italic;
-            margin-bottom: 15px;
-        }
+.review-text {
+font-style: italic;
+margin-bottom: 15px;
+}
 
-        .review-author {
-            font-family: var(--font-titles);
-            font-size: 18px;
-            color: var(--primary);
-        }
+.review-author {
+font-family: var(--font-titles);
+font-size: 18px;
+color: var(--primary);
+}
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--primary);
-            color: var(--white);
-            text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-        }
-    </style>
-    <link rel="stylesheet" href="style.css">
+/* --- FOOTER --- */
+footer {
+background-color: var(--primary);
+color: var(--white);
+text-align: center;
+padding: 30px;
+margin-top: 60px;
+}
+</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 
 
-    <!-- BARRE DE NAVIGATION -->
+<!-- BARRE DE NAVIGATION -->
 <header>
-    <nav>
-        <a href="#" class="logo">Clem's Top Travel</a>
-        
-        <!-- Le bouton Hamburger -->
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        
-        <!-- Votre menu -->
-        <ul id="nav-links">
-            <li><a href="#Plateforme">Plateforme</a></li>
-            <li><a href="#calendrier">Nouveautés</a></li>
-            <li class="menu-deroulant">
-                <a href="#">Comparatifs ▼</a>
-                <div class="contenu-menu">
-                    <a href="#comparatifs-travel-site">Travel site</a>
-                    <a href="#comparatifs-world-tour">World Tour</a>
-                    <a href="#comparatifs-gateway">Gateway</a>
-                </div>
-            </li>
-            <li><a href="#videos">Présentation</a></li>
-            <li><a href="#avis">Avis Clients</a></li>
-            <li><a href="#Témoignages">Témoignages</a></li>
-        </ul>
-    </nav>
+<nav>
+<a href="#" class="logo">Clem's Top Travel</a>
+
+<!-- Le bouton Hamburger -->
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<!-- Votre menu -->
+<ul id="nav-links">
+<li><a href="#Plateforme">Plateforme</a></li>
+<li><a href="#calendrier">Nouveautés</a></li>
+<li class="menu-deroulant">
+<a href="#">Comparatifs ▼</a>
+<div class="contenu-menu">
+<a href="#comparatifs-travel-site">Travel site</a>
+<a href="#comparatifs-world-tour">World Tour</a>
+<a href="#comparatifs-gateway">Gateway</a>
+</div>
+</li>
+<li><a href="#videos">Présentation</a></li>
+<li><a href="#avis">Avis Clients</a></li>
+<li><a href="#Témoignages">Témoignages</a></li>
+</ul>
+</nav>
 </header>
 <!-- (La balise </nav> qui était ici a été supprimée) -->
 
 
-    <!-- SECTION D'ACCUEIL -->
-    <section class="hero">
-        <h1>Prochain arrêt : L'Aventure</h1>
-        <p>Découvrez nos avantages clients et nos possibilités de devenir partenaire.</p>
-    </section>
+<!-- SECTION D'ACCUEIL -->
+<section class="hero">
+<h1>Prochain arrêt : L'Aventure</h1>
+<p>Découvrez nos avantages clients et nos possibilités de devenir partenaire.</p>
+</section>
 
-    <!-- SECTION PLATEFORME-->
-    <section id="Plateforme">
-        <button class="btn-icon" data-target="Plateforme">
-            <img src="icones/travel.webp" alt="Icône plateforme" width="24" height="24">
-        </button>
-        <h2>Qui sommes-nous ?</h2>
+<!-- SECTION PLATEFORME-->
+<section id="Plateforme">
+<button class="btn-icon" data-target="Plateforme">
+<img src="icones/travel.webp" alt="Icône plateforme" width="24" height="24">
+</button>
+<h2>Qui sommes-nous ?</h2>
 
-        <div class="plateforme-content">
-            <p>Notre plateforme de voyage privée vous permet de réserver facilement tous vos séjours et prestations
-                touristiques, comme vous le faites sur les grandes plateformes de réservation.</p>
+<div class="plateforme-content">
+<p>Notre plateforme de voyage privée vous permet de réserver facilement tous vos séjours et prestations
+touristiques, comme vous le faites sur les grandes plateformes de réservation.</p>
 
-            <p>Vous y trouverez une offre complète :</p>
-            <ul>
-                <li></strong>Hôtels</strong></li>
-                <li></strong>Locations de vacances</strong></li>
-                <li></strong>Locations de voitures</strong></li>
-                <li></strong>Croisière</strong>s</li>
-                <li></strong>Excursions et activités</strong></li>
-                <li></strong>Vols long-courriers</strong></li>
-            </ul>
+<p>Vous y trouverez une offre complète :</p>
+<ul>
+<li></strong>Hôtels</strong></li>
+<li></strong>Locations de vacances</strong></li>
+<li></strong>Locations de voitures</strong></li>
+<li></strong>Croisière</strong>s</li>
+<li></strong>Excursions et activités</strong></li>
+<li></strong>Vols long-courriers</strong></li>
+</ul>
 
-            <p>Créée en 2013, notre plateforme est aujourd'hui présente dans plus de 73 pays et rassemble une communauté
-                internationale de voyageurs.</p>
-            <p>Elle s'adresse aussi bien aux personnes souhaitant simplement profiter des avantages de la plateforme
-                qu'à celles qui désirent développer une activité autour du voyage.</p>
+<p>Créée en 2013, notre plateforme est aujourd'hui présente dans plus de 73 pays et rassemble une communauté
+internationale de voyageurs.</p>
+<p>Elle s'adresse aussi bien aux personnes souhaitant simplement profiter des avantages de la plateforme
+qu'à celles qui désirent développer une activité autour du voyage.</p>
 
-            <p><strong>Deux possibilités s'offrent à vous :</strong></p>
+<p><strong>Deux possibilités s'offrent à vous :</strong></p>
 
-            <p><strong>Client</strong><br>
-                Accédez à la plateforme et profitez de ses avantages pour organiser vos voyages.</p>
+<p><strong>Client</strong><br>
+Accédez à la plateforme et profitez de ses avantages pour organiser vos voyages.</p>
 
-            <p><strong>Partenaire</strong><br>
-                Bénéficiez des mêmes avantages tout en ayant la possibilité de développer une activité en recommandant
-                la plateforme et de percevoir une rémunération selon votre implication.</p>
-        </div>
-    </section>
+<p><strong>Partenaire</strong><br>
+Bénéficiez des mêmes avantages tout en ayant la possibilité de développer une activité en recommandant
+la plateforme et de percevoir une rémunération selon votre implication.</p>
+</div>
+</section>
 
-    <!-- SECTION CALENDRIER DES VOYAGES -->
-    <section id="calendrier">
-        <button class="btn-icon" data-target="calendrier">
-            <img src="icones/explore.webp" alt="Icône voyage" width="24" height="24">
-        </button>
-        <h2>Calendrier des Prochains Voyages WORLD TOURS</h2>
+<!-- SECTION CALENDRIER DES VOYAGES -->
+<section id="calendrier">
+<button class="btn-icon" data-target="calendrier">
+<img src="icones/explore.webp" alt="Icône voyage" width="24" height="24">
+</button>
+<h2>Calendrier des Prochains Voyages WORLD TOURS</h2>
 
-        <div class="grid-container">
-            <div class="trip-card">
-                <img id="review-image-maui" src="./assets\maui.webp" alt="Maui" class="review-box">
-            </div>
+<div class="calendar-grid">
+<div class="trip-card">
+<img id="review-image-maui" src="./assets\maui.webp" alt="Maui" class="review-box">
+</div>
 
-            <div class="trip-card">
-                <img id="review-image-costa mujeres" src="./assets\costa mujeres.webp" alt="Costa mujeres"
-                    class="review-box">
-            </div>
+<div class="trip-card">
+<img id="review-image-costa mujeres" src="./assets\costa mujeres.webp" alt="Costa mujeres"
+class="review-box">
+</div>
 
-            <div class="trip-card">
-                <img id="review-image-Prague" src="./assets\Prague.webp" alt="Prague" class="review-box">
-            </div>
-        </div>
-    </section>
+<div class="trip-card">
+<img id="review-image-Prague" src="./assets\Prague.webp" alt="Prague" class="review-box">
+</div>
+</div>
+</section>
 
-    <!-- SECTION COMPARATIFS -->
-        <!-- Votre section existante -->
-    <section id="comparatifs-travel-site">
-        <button class="btn-icon" data-target="comparatifs-travel-site">
-        <img src="icones/balance.webp" alt="Icône comparaison" width="24" height="24">
-        </button>
-        <h2>Nos économies en Travel site</h2>
+<!-- SECTION COMPARATIFS -->
+<!-- Votre section existante -->
+<section id="comparatifs-travel-site">
+<button class="btn-icon" data-target="comparatifs-travel-site">
+<img src="icones/balance.webp" alt="Icône comparaison" width="24" height="24">
+</button>
+<h2>Nos économies en Travel site</h2>
 
-            <div class="grid-container">
-                <div class="trip-card">
-                    <img id="review-image-Travel site Logement Cancun" src="./assets\Travel site logement Cancun.webp"
-                        alt="Cancun" class="review-box">
-                </div>
+<div class="calendar-grid">
+<div class="trip-card">
+<img id="review-image-Travel site Logement Cancun" src="./assets\Travel site logement Cancun.webp"
+alt="Cancun" class="review-box">
+</div>
 
-                <div class="trip-card">
-                    <img id="review-image-Travel site Croisière Grèce" src="./assets\Travel site Croisière Grèce.webp"
-                        alt="Croisière" class="review-box">
-                </div>
+<div class="trip-card">
+<img id="review-image-Travel site Croisière Grèce" src="./assets\Travel site Croisière Grèce.webp"
+alt="Croisière" class="review-box">
+</div>
 
-                <div class="trip-card">
-                    <img id="review-image-Travel site Bali River activité"
-                        src="./assets\Travel site Bali River activité.webp" alt="Activité" class="review-box">
-                </div>
-            </div>
-    </section>
+<div class="trip-card">
+<img id="review-image-Travel site Bali River activité"
+src="./assets\Travel site Bali River activité.webp" alt="Activité" class="review-box">
+</div>
+</div>
+</section>
 
-        <!-- Ajoutez ces deux nouvelles sections en bas de votre page -->
-    <section id="comparatifs-world-tour">
-    <h2>Nos économies en World Tour</h2>
-            <div class="grid-container">
-                <div class="trip-card">
-                    <img id="review-image-Worldtour Colombie" src="./assets\Worldtour Colombie.webp"
-                        alt="Worldtour Colombie" class="review-box">
-                </div>
+<!-- Ajoutez ces deux nouvelles sections en bas de votre page -->
+<section id="comparatifs-world-tour">
+<h2>Nos économies en World Tour</h2>
+<div class="calendar-grid">
+<div class="trip-card">
+<img id="review-image-Worldtour Colombie" src="./assets\Worldtour Colombie.webp"
+alt="Worldtour Colombie" class="review-box">
+</div>
 
-                <div class="trip-card">
-                    <img id="review-image-Worldtour Crète" src="./assets\Worldtour Crète.webp"
-                        alt="Worldtour Crète" class="review-box">
-                </div>
+<div class="trip-card">
+<img id="review-image-Worldtour Crète" src="./assets\Worldtour Crète.webp"
+alt="Worldtour Crète" class="review-box">
+</div>
 
-                <div class="trip-card">
-                    <img id="review-image-Worldtour Doha"
-                        src="./assets\Worldtour Doha.webp" 
-                        alt="Worldtour Doha" class="review-box">
-                </div>
-            </div>
-    </section>
+<div class="trip-card">
+<img id="review-image-Worldtour Doha"
+src="./assets\Worldtour Doha.webp"
+alt="Worldtour Doha" class="review-box">
+</div>
+</div>
+</section>
 
-    <section id="comparatifs-gateway">
-    <h2>Nos économies en Gateway</h2>
-                   <div class="grid-container">
-                <div class="trip-card">
-                    <img id="review-image-Gateway Afrique Du Sud" 
-                    src="./assets\Gateway Afrique Du Sud.webp"
-                        alt="Gateway Afrique Du Sud" class="review-box">
-                </div>
+<section id="comparatifs-gateway">
+<h2>Nos économies en Gateway</h2>
+<div class="calendar-grid">
+<div class="trip-card">
+<img id="review-image-Gateway Afrique Du Sud"
+src="./assets\Gateway Afrique Du Sud.webp"
+alt="Gateway Afrique Du Sud" class="review-box">
+</div>
 
-                <div class="trip-card">
-                    <img id="review-image-Gateway Alicante" 
-                    src="./assets\Gateway Alicante.webp"
-                        alt="Gateway Alicante" class="review-box">
-                </div>
+<div class="trip-card">
+<img id="review-image-Gateway Alicante"
+src="./assets\Gateway Alicante.webp"
+alt="Gateway Alicante" class="review-box">
+</div>
 
-                <div class="trip-card">
-                    <img id="review-image-Gateway Angleterre"
-                        src="./assets\Gateway Angleterre.webp" 
-                        alt="image-Gateway Angleterre" class="review-box">
-                </div>
-            </div>
-    </section>
-       
-        
-    </section>
+<div class="trip-card">
+<img id="review-image-Gateway Angleterre"
+src="./assets\Gateway Angleterre.webp"
+alt="image-Gateway Angleterre" class="review-box">
+</div>
+</div>
+</section>
 
-    <!-- SECTION DERNIÈRES VIDÉOS -->
-    <section id="videos">
-        <button class="btn-icon" data-target="videos">
-            <img src="icones/play_circle.webp" alt="Icône presentation" width="24" height="24">
-        </button>
-        <h2>Notre présentation en replay</h2>
 
-        <div class="video-grid">
-            <div class="video-container">
-                <iframe
-                    src="https://cdfab0db.sibforms.com/serve/MUIFADfcuL7dJYmkZsIKZGKOFiyolzKwkURCuqt8WSo90AJri6u865LUZf8ng3vTrFzdBksonr6lqxCZUv2Aywys9wnr-p0rPEgND-CgnZkvoF9NPdIYN8RrTMsY9BEtAzOI3L7-E5xDCU1HXotY7HzdfPoRVJ2S3SohvkG8_VoHFLjcra_RtBJA3734hRHTMy3SjXfhgfr8SGjF"
-                    title="Lien Présentation replay" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
+</section>
 
-    <!-- SECTION AVIS CLIENTS -->
-    <section id="avis">
-        <button class="btn-icon" data-target="avis">
-            <img src="icones/rate_review.webp" alt="Icône avis" width="24" height="24">
-        </button>
-        <h2>Ce que disent nos voyageurs</h2>
+<!-- SECTION DERNIÈRES VIDÉOS -->
+<section id="videos">
+<button class="btn-icon" data-target="videos">
+<img src="icones/play_circle.webp" alt="Icône presentation" width="24" height="24">
+</button>
+<h2>Notre présentation en replay</h2>
 
-        <div class="reviews-grid">
-            <div class="review-card">
-                <img id="review-image-Agathe" src="./assets\Agathe - Albanie.webp" alt="Avis Agathe" class="review-box">
-            </div>
+<div class="video-grid">
+<div class="video-container">
+<iframe
+src="https://cdfab0db.sibforms.com/serve/MUIFADfcuL7dJYmkZsIKZGKOFiyolzKwkURCuqt8WSo90AJri6u865LUZf8ng3vTrFzdBksonr6lqxCZUv2Aywys9wnr-p0rPEgND-CgnZkvoF9NPdIYN8RrTMsY9BEtAzOI3L7-E5xDCU1HXotY7HzdfPoRVJ2S3SohvkG8_VoHFLjcra_RtBJA3734hRHTMy3SjXfhgfr8SGjF"
+title="Lien Présentation replay" allowfullscreen></iframe>
+</div>
+</div>
+</section>
 
-            <div class="review-card">
-                <img id="review-image-Amélie" src="./assets\Amélie - Grèce.webp" alt="Avis Amélie" class="review-box">
-            </div>
+<!-- SECTION AVIS CLIENTS -->
+<section id="avis">
+<button class="btn-icon" data-target="avis">
+<img src="icones/rate_review.webp" alt="Icône avis" width="24" height="24">
+</button>
+<h2>Ce que disent nos voyageurs</h2>
 
-            <div class="review-card">
-                <img id="review-image-Emma" src="./assets\Emma - Prague.webp" alt="Avis Emma" class="review-box">
-            </div>
-        </div>
-    </section>
+<div class="reviews-grid">
+<div class="review-card">
+<img id="review-image-Agathe" src="./assets\Agathe - Albanie.webp" alt="Avis Agathe" class="review-box">
+</div>
 
-    <!-- SECTION TEMOIGNAGES -->
-    <section id="Témoignages">
-        <button class="btn-icon" data-target="Témoignages">
-            <img src="icones/chat.webp" alt="Icône témoignage" width="24" height="24">
-        </button>
-        <h2>D'où viennent nos partenaires</h2>
+<div class="review-card">
+<img id="review-image-Amélie" src="./assets\Amélie - Grèce.webp" alt="Avis Amélie" class="review-box">
+</div>
 
-        <div class="reviews-grid">
-            <div class="review-card">
-                <img id="review-image-Laurie S" src="./assets\Laurie S.webp" alt="Témoignage Laurie" class="review-box">
-            </div>
+<div class="review-card">
+<img id="review-image-Emma" src="./assets\Emma - Prague.webp" alt="Avis Emma" class="review-box">
+</div>
+</div>
+</section>
 
-            <div class="review-card">
-                <img id="review-image-Félix" src="./assets\Félix.webp" alt="Témoignage Félix" class="review-box">
-            </div>
+<!-- SECTION TEMOIGNAGES -->
+<section id="Témoignages">
+<button class="btn-icon" data-target="Témoignages">
+<img src="icones/chat.webp" alt="Icône témoignage" width="24" height="24">
+</button>
+<h2>D'où viennent nos partenaires</h2>
 
-            <div class="review-card">
-                <img id="review-image-Armelle" src="./assets\Armelle.webp" alt="Témoignage Armelle" class="review-box">
-            </div>
-        </div>
-    </section>
+<div class="reviews-grid">
+<div class="review-card">
+<img id="review-image-Laurie S" src="./assets\Laurie S.webp" alt="Témoignage Laurie" class="review-box">
+</div>
 
-    <!-- PIED DE PAGE -->
-    <footer>
-        <p>&copy; 2026 Clem's Top Travel. Tous droits réservés.</p>
-    </footer>
+<div class="review-card">
+<img id="review-image-Félix" src="./assets\Félix.webp" alt="Témoignage Félix" class="review-box">
+</div>
 
-    <script>
-        // Effet de clic sur les boutons d'icônes pour recentrer la section correspondante
-        document.querySelectorAll('.btn-icon').forEach(button => {
-            button.addEventListener('click', () => {
-                const targetId = button.getAttribute('data-target');
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('active');
-        }
+<div class="review-card">
+<img id="review-image-Armelle" src="./assets\Armelle.webp" alt="Témoignage Armelle" class="review-box">
+</div>
+</div>
+</section>
 
-        // Ferme le menu si on clique sur un lien (pour ne pas rester bloqué)
-        document.querySelectorAll('#nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('nav-links').classList.remove('active');
-            });
-        });
-    </script>
+<!-- PIED DE PAGE -->
+<footer>
+<p>&copy; 2026 Clem's Top Travel. Tous droits réservés.</p>
+</footer>
+
+<script>
+// Effet de clic sur les boutons d'icônes pour recentrer la section correspondante
+document.querySelectorAll('.btn-icon').forEach(button => {
+button.addEventListener('click', () => {
+const targetId = button.getAttribute('data-target');
+const targetSection = document.getElementById(targetId);
+if (targetSection) {
+targetSection.scrollIntoView({ behavior: 'smooth' });
+}
+});
+});
+</script>
+<script>
+function toggleMenu() {
+const navLinks = document.getElementById('nav-links');
+navLinks.classList.toggle('active');
+}
+
+// Ferme le menu si on clique sur un lien (pour ne pas rester bloqué)
+document.querySelectorAll('#nav-links a').forEach(link => {
+link.addEventListener('click', () => {
+document.getElementById('nav-links').classList.remove('active');
+});
+});
+</script>
 </body>
 
 </html>
+
