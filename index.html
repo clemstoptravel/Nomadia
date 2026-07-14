@@ -21,7 +21,10 @@
             font-weight: 700;
             font-style: normal;
         }
-
+        .menu-deroulant { position: relative; display: inline-block; }
+        .contenu-menu { display: none; position: absolute; background: white; border: 1px solid #ccc; }
+        .menu-deroulant:hover .contenu-menu { display: block; }
+        .contenu-menu a { display: block; padding: 10px; text-decoration: none; color: black; }
         :root {
             --primary: #1a5f7a;
             --secondary: #57c5b6;
@@ -349,6 +352,14 @@
 </head>
 <body>
 
+    <nav class="menu-deroulant">
+        <a href="#">Mon Menu ▼</a>
+        <div class="contenu-menu">
+            <a href="#">Lien 1</a>
+            <a href="#">Lien 2</a>
+            <a href="#">Lien 3</a>
+        </div>
+    </nav>
     <!-- BARRE DE NAVIGATION -->
     <header>
         <nav>
@@ -407,7 +418,7 @@
     <!-- SECTION CALENDRIER DES VOYAGES -->
     <section id="calendrier">
         <button class="btn-icon" data-target="calendrier">
-            <img src="icones/plane.webp" alt="Icône voyage" width="24" height="24">
+            <img src="icones/explore.webp" alt="Icône voyage" width="24" height="24">
         </button>
         <h2>Calendrier des Prochains Voyages WORLD TOURS</h2>
         
