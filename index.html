@@ -1,1 +1,525 @@
-blabla
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyages et LIberté - Partez sans vous ruiner</title>
+    
+    <!-- IMPORT GOOGLE FONTS (Oswald) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght=700&display=swap" rel="stylesheet">
+    
+    <!-- IMPORT GOOGLE MATERIAL SYMBOLS (Icons) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+   <!-- Dans votre fichier HTML ouvert dans VS Code -->
+    <div class="review-box">
+         <!-- Ces balises ont un ID pour que le JS puisse les trouver -->
+         <img id="review-image" src="" alt="Avis client">
+    </div>
+
+    <!-- Le lien vers votre script, juste avant la fin du body -->
+    <script src="script.js"></script>
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary: #1a5f7a;
+            --secondary: #57c5b6;
+            --dark: #159895;
+            --light: #f5f9f9;
+            --text: #2c3e50;
+            --white: #ffffff;
+            --font-titles: 'Oswald', 'Impact', 'Arial Black', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: var(--font-titles);
+            font-size: 28px;
+            letter-spacing: 1px;
+            color: var(--primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        nav .logo:hover {
+            color: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(26, 95, 122, 0), rgba(21, 152, 149, 0)), url('https://cdn.polyhaven.com/gallery/Rohit%20Modak_lakeside_HodC.jpg?width=1517&quality=95') no-repeat center center/cover;
+            max-width: 55%;
+            height: 60vh;
+            object-fit: contain;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-titles);
+            font-size: 56px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* --- SECTION STRUCTURE --- */
+        section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-family: var(--font-titles);
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto 0;
+        }
+        section h3 {
+            font-size: 20px;
+
+            margin-bottom: 20px;
+        }    
+
+         section h4 {
+            display: flex;
+            text-align: justify;
+            full-size: 10px;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 1px;
+            color: black;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+         section h5 {
+            padding-left: 40px;
+            display: flex;
+            font-size: 100%;
+            full-size: 20px;
+            font-style: italic;
+            font-weight: normal;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            color: black;
+            margin-bottom: 5px;
+            position: relative;
+
+        }
+        /* --- STYLE DU BOUTON MATERIAL ICON --- */
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-icon:hover {
+            background-color: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        .btn-icon .material-symbols-outlined {
+            font-size: 28px;
+        }
+
+        /* --- CALENDRIER (GRID) --- */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .trip-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .trip-card img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: 8px;
+            margin-bottom: 15px;
+          
+        }
+        .trip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .trip-date {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .trip-content {
+            padding: 20px;
+        }
+
+        .trip-content h3 {
+            font-family: var(--font-titles);
+            font-size: 22px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .trip-price {
+            display: block;
+            font-family: var(--font-titles);
+            font-size: 24px;
+            color: var(--dark);
+            margin-top: 15px;
+        }
+
+        /* --- VIDEOS (GRID) --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        @media (max-width: 500px) {
+            .video-grid { grid-template-columns: 1fr; }
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- AVIS CLIENTS --- */
+
+      
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary);
+        }
+      
+        .review-card img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: 8px;
+            margin-bottom: 15px;
+          
+        }
+        .review-text {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .review-author {
+            font-family: var(--font-titles);
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRE DE NAVIGATION -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Clem's Top Travel</a>
+            <ul>
+                <li><a href="#Plateforme">Plateforme</a></li>
+                <li><a href="#calendrier">Nouveautés</a></li>
+                <li><a href="#videos">Présentation</a></li>
+                <li><a href="#avis">Avis Clients</a></li>
+                <li><a href="#Témoignages">Témoignages</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SECTION D'ACCUEIL -->
+    <section class="hero">
+        <h1>Prochain arrêt : L'Aventure</h1>
+        <p>Découvrez nos avantages clients et nos possibilités de devenir partenaire.</p>
+    </section>
+
+    <!-- SECTION PLATEFORME-->
+    <section id="Plateforme">
+        <button class="btn-icon" data-target="Plateforme">
+            <span class="material-symbols-outlined">travel</span>
+        </button>
+        <h2>Qui sommes-nous ?</h2>
+        
+        <div class="Plateforme-grid">
+        <h4>Notre plateforme de voyage privée vous permet de réserver facilement tous vos séjours et prestations touristiques, comme vous le faites sur les grandes plateformes de réservation.
+        <h4>Vous y trouverez une offre complète : <h4>
+            <h5>
+          </ul>      
+                <li><h5>Hôtels</li><h5>
+                <li><h5>Locations de vacances</li><h5>
+                <li><h5>Locations de voitures</li><h5>
+                <li><h5>Croisières</li><h5>
+                <li><h5>Excursions et activités</li><h5>
+                <li><h5>Vols long-courriers</li><h5>
+            
+         </ul>
+         </h5>
+        <h4>Créée en 2013, notre plateforme est aujourd'hui présente dans plus de 73 pays et rassemble une communauté internationale de voyageurs.
+
+        <h4>Elle s'adresse aussi bien aux personnes souhaitant simplement profiter des avantages de la plateforme qu'à celles qui désirent développer une activité autour du voyage.
+
+        <h4>Deux possibilités s'offrent à vous :
+
+        <h4>Client
+        <h4>Accédez à la plateforme et profitez de ses avantages pour organiser vos voyages.
+
+        <h4>Partenaire
+        <h4>Bénéficiez des mêmes avantages tout en ayant la possibilité de développer une activité en recommandant la plateforme et de percevoir une rémunération selon votre implication.
+        </div>
+
+    <!-- SECTION CALENDRIER DES VOYAGES -->
+    <section id="calendrier">
+        <button class="btn-icon" data-target="calendrier">
+            <span class="material-symbols-outlined">explore</span>
+        </button>
+        <h2>Calendrier des Prochains Voyages WORLD TOURS</h2>
+        
+        <div class="calendar-grid">
+            <div class="trip-card">
+                <img id="review-image-Agathe"
+                 src="./assets/Maui.jpg"
+                 alt="Maui" class="review-box">
+            </div>
+
+            <div class="trip-card">
+                <img id="review-image-Agathe"
+                 src="./assets/costa mujeres.jpg"
+                 alt="COsta mujeres" class="review-box">
+            </div>
+
+            <div class="trip-card">
+                <img id="review-image-Agathe"
+                 src="./assets/Prague.jpg"
+                 alt="Prague" class="review-box">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION DERNIÈRES VIDÉOS -->
+    <section id="videos">
+        <button class="btn-icon" data-target="videos">
+            <span class="material-symbols-outlined">play_circle</span>
+        </button>
+        <h2>Notre présentation en replay</h2>
+        
+        <div class="video-grid">
+            <div class="video-container">
+                <iframe src="https://cdfab0db.sibforms.com/serve/MUIFADfcuL7dJYmkZsIKZGKOFiyolzKwkURCuqt8WSo90AJri6u865LUZf8ng3vTrFzdBksonr6lqxCZUv2Aywys9wnr-p0rPEgND-CgnZkvoF9NPdIYN8RrTMsY9BEtAzOI3L7-E5xDCU1HXotY7HzdfPoRVJ2S3SohvkG8_VoHFLjcra_RtBJA3734hRHTMy3SjXfhgfr8SGjF" title="Accès à la présentation" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://drive.google.com/drive/u/0/folders/13D4KTBn6Dk4Jd0hgwG0vqFSqalYr4KBX" title="Roomtour ABU DHABI" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION AVIS CLIENTS -->
+    <section id="avis">
+        <button class="btn-icon" data-target="avis">
+            <span class="material-symbols-outlined">rate_review</span>
+        </button>
+        <h2>Ce que disent nos voyageurs</h2>
+        
+        <div class="reviews-grid">
+            <div class="review-card">
+                <img id="review-image-Agathe"
+                 src="./assets/Agathe - Albanie.jpg"
+                 alt="Avis Agathe" class="review-box">
+            </div>
+
+            <div class="review-card">
+                <img id="review-image-Agathe"
+                 src="./assets\Amélie - Grèce.jpg"
+                 alt="Avis Amélie" class="review-box">
+            </div>
+
+            <div class="review-card">
+                <img id="review-image-Agathe"
+                 src="./assets\Emma - Prague.jpg"
+                 alt="Avis Emma" class="review-box">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION TEMOIGNAGES -->
+    <section id="Témoignages">
+        <button class="btn-icon" data-target="Témoignages">
+            <span class="material-symbols-outlined">chat</span>
+        </button>
+        <h2>D'où viennent nos partenaires</h2>
+        
+        <div class="reviews-grid">
+            <div class="review-card">
+                <img id="review-image-Laurie S"
+                 src="./assets/Laurie S.jpg"
+                 alt="Témoignage Laurie" class="review-box">
+            </div>
+
+            <div class="review-card">
+                <img id="review-image-Félix"
+                 src="./assets\Félix.jpg"
+                 alt="Témoignage Félix" class="review-box">
+            </div>
+
+            <div class="review-card">
+                <img id="review-image-Armelle"
+                 src="./assets\Armelle.jpg"
+                 alt="Témoignage Armelle" class="review-box">
+            </div>
+        </div>
+    </section>
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <p>&copy; 2026 Clem's Top Travel. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Effet de clic sur les boutons d'icônes pour recentrer la section correspondante
+        document.querySelectorAll('.btn-icon').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
