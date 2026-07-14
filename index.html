@@ -28,13 +28,6 @@
             height: auto;
             display: block;
         }
-        /* Par défaut (mobile), les éléments sont en colonne */
-        .calendar-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 10px;
-        }
 
         /* Sur ordinateur (écran plus large), on remet en ligne si besoin */
         /* Cache le menu complet sur mobile */
@@ -222,7 +215,30 @@
             padding: 20px;
             margin: 0 auto;    /* Centre la section */
         }
+        /* --- GRILLE UNIVERSELLE RESPONSIVE --- */
+        .grid-container {
+            display: grid;
+            /* La grille s'adapte toute seule au nombre d'éléments */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
 
+        /* --- CARTE AVEC RATIO FIXE --- */
+        .trip-card, .review-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* L'image prend 16/9 de l'espace de la carte */
+        .trip-card img, .review-card img {
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Garantit que toutes les images ont la même forme */
+            object-fit: cover;    /* L'image se recadre proprement sans se déformer */
+        }
         /* Sur ordinateur, on limite la largeur pour garder l'esthétique */
         @media (min-width: 769px) {
             .hero {
@@ -324,7 +340,7 @@
 
 
         /* --- CALENDRIER (GRID) --- */
-        .calendar-grid {
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -381,19 +397,6 @@
             margin-top: 15px;
         }
 
-        /* --- VIDEOS (GRID) --- */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-        }
-
-        @media (max-width: 500px) {
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -415,12 +418,6 @@
         /* --- AVIS CLIENTS --- */
 
 
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            text-align: left;
-        }
 
         .review-card {
             background: var(--white);
@@ -546,7 +543,7 @@
         </button>
         <h2>Calendrier des Prochains Voyages WORLD TOURS</h2>
 
-        <div class="calendar-grid">
+        <div class="grid-container">
             <div class="trip-card">
                 <img id="review-image-maui" src="./assets\maui.webp" alt="Maui" class="review-box">
             </div>
@@ -570,7 +567,7 @@
         </button>
         <h2>Nos économies en Travel site</h2>
 
-            <div class="calendar-grid">
+            <div class="grid-container">
                 <div class="trip-card">
                     <img id="review-image-Travel site Logement Cancun" src="./assets\Travel site logement Cancun.webp"
                         alt="Cancun" class="review-box">
@@ -591,7 +588,7 @@
         <!-- Ajoutez ces deux nouvelles sections en bas de votre page -->
     <section id="comparatifs-world-tour">
     <h2>Nos économies en World Tour</h2>
-            <div class="calendar-grid">
+            <div class="grid-container">
                 <div class="trip-card">
                     <img id="review-image-Worldtour Colombie" src="./assets\Worldtour Colombie.webp"
                         alt="Worldtour Colombie" class="review-box">
@@ -612,7 +609,7 @@
 
     <section id="comparatifs-gateway">
     <h2>Nos économies en Gateway</h2>
-                   <div class="calendar-grid">
+                   <div class="grid-container">
                 <div class="trip-card">
                     <img id="review-image-Gateway Afrique Du Sud" 
                     src="./assets\Gateway Afrique Du Sud.webp"
