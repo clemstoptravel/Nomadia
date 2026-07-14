@@ -38,25 +38,25 @@
 
         /* Sur ordinateur (écran plus large), on remet en ligne si besoin */
         /* Cache le menu complet sur mobile */
-       @media (max-width: 768px) {
-    /* Le menu est caché par défaut */
+      @media (max-width: 768px) {
+    /* Cache le menu par défaut */
         nav ul {
-            display: none; 
+            display: none !important; /* !important force le masquage */
             flex-direction: column;
-            position: absolute; 
-            top: 80px; 
+            position: absolute;
+            top: 80px;
             left: 0;
             width: 100%;
-            background: var(--white);
-            padding: 20px;
+            background: white;
             box-shadow: 0 10px 10px rgba(0,0,0,0.1);
             z-index: 999;
         }
 
-        /* Affichage quand on clique */
+        /* Affiche le menu quand on ajoute la classe active */
         nav ul.active {
-            display: flex;
+            display: flex !important; /* !important force l'affichage au clic */
         }
+    }
 
         /* Important : s'assurer que le menu toggle est visible */
         .menu-toggle {
