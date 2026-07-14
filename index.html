@@ -153,9 +153,17 @@
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
+            /* Supprimez "position: sticky;" ici pour qu'il soit par défaut en normal */
+            width: 100%;
             z-index: 1000;
+        }
+
+        /* Si vous voulez qu'il soit sticky UNIQUEMENT sur ordinateur */
+        @media (min-width: 769px) {
+            header {
+                position: sticky;
+                top: 0;
+            }
         }
 
         nav {
