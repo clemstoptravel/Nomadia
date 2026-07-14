@@ -39,30 +39,33 @@
         /* Sur ordinateur (écran plus large), on remet en ligne si besoin */
         /* Cache le menu complet sur mobile */
         @media (max-width: 768px) {
-            nav ul {
-                display: none; /* Cache les liens par défaut */
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-
-            /* Affiche le menu quand on clique (via JavaScript) */
-            nav ul.active {
-                display: flex;
-            }
-
-            /* Ajout d'un bouton menu (hamburger) */
-            .menu-toggle {
-                display: block;
-                cursor: pointer;
-                font-size: 24px;
-            }
+        /* Le menu est caché par défaut et ne prend plus de place */
+        nav ul {
+            display: none; 
+            flex-direction: column;
+            position: absolute; /* S'affiche par-dessus */
+            top: 80px;          /* Juste en dessous de votre header */
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 20px;
+            box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+            z-index: 999;
         }
+
+        /* Quand on ajoute la classe 'active', le menu s'affiche */
+        nav ul.active {
+            display: flex;
+        }
+
+        /* Le bouton hamburger devient obligatoire sur mobile */
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            font-size: 30px;
+            color: var(--primary);
+        }
+    }
 
         /* Cache le bouton hamburger sur grand écran */
         @media (min-width: 769px) {
