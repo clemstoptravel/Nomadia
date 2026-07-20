@@ -1,19 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voyages et LIberté - Partez sans vous ruiner</title>
+<title>Voyages et Liberté - Partez sans vous ruiner</title>
 
 <!-- IMPORT GOOGLE FONTS (Oswald) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!--<link href="https://fonts.googleapis.com/css2?family=Oswald:wght=700&display=swap" rel="stylesheet">-->
-
-<!-- IMPORT GOOGLE MATERIAL SYMBOLS (Icons) -->
-<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />" />-->
 
 <style>
 /* --- VARIABLES & RESET --- */
@@ -38,11 +33,9 @@ padding: 10px;
 }
 
 /* --- RESPONSIVITÉ DU HEADER --- */
-/* Cache le menu complet sur mobile et tablette (pour inclure le paysage) */
 @media (max-width: 1024px) {
-/* Cache le menu par défaut */
 nav ul {
-display: none !important; /* !important force le masquage */
+display: none !important;
 flex-direction: column;
 position: absolute;
 top: 80px;
@@ -53,15 +46,13 @@ box-shadow: 0 10px 10px rgba(0,0,0,0.1);
 z-index: 999;
 padding: 20px 0;
 text-align: center;
-gap: 15px; /* Espace entre les boutons sur mobile */
+gap: 15px;
 }
 
-/* Affiche le menu quand on ajoute la classe active */
 nav ul.active {
-display: flex !important; /* !important force l'affichage au clic */
+display: flex !important;
 }
 
-/* Important : s'assurer que le menu toggle est visible */
 .menu-toggle {
 display: block;
 cursor: pointer;
@@ -70,18 +61,17 @@ color: var(--primary);
 }
 }
 
-/* Cache le bouton hamburger sur grand écran */
 @media (min-width: 1025px) {
 .menu-toggle { display: none; }
 }
 
-/* Assure que le corps de la page ne déborde pas */
 body {
 overflow-x: hidden;
 width: 100%;
 margin: 0;
 padding: 0;
 }
+
 /* --- MENU DÉROULANT --- */
 .menu-deroulant {
 position: relative;
@@ -93,48 +83,36 @@ display: none;
 position: absolute;
 top: 100%;
 left: 0;
-background: #ffffff; /* Fond blanc plus propre */
+background: #ffffff;
 border: 1px solid #ddd;
-min-width: 140px; /* Un peu plus petit */
+min-width: 140px;
 z-index: 1001;
 box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-border-radius: 4px; /* Coins arrondis */
+border-radius: 4px;
 }
 
-/* Rendre les liens du menu plus compacts */
 .contenu-menu a {
-padding: 8px 12px; /* Réduit la hauteur des lignes */
-font-size: 14px; /* Texte légèrement plus petit */
+padding: 8px 12px;
+font-size: 14px;
 }
 .menu-deroulant:hover .contenu-menu {
 display: block;
-/* S'affiche au survol */
 }
 
-/* Classe pour centrer n'importe quel élément en ligne (comme une image) à l'intérieur de son parent */
-.centrer-image {
-    text-align: center; /* Centre l'image horizontalement */
-    margin-top: 20px;   /* Ajoute un peu d'espace au-dessus */
-    margin-bottom: 20px; /* Ajoute un peu d'espace en dessous */
-}
-
-
-/* Votre style pour la photo (gardez-le comme avant) */
 .photo-profil {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        /* Pour le centrage */
-    display: block;      /* Transforme l'image en bloc */
-    margin: 20px auto;   /* 20px en haut/bas, et 'auto' centre horizontalement */
+width: 300px;
+height: 300px;
+object-fit: cover;
+border-radius: 15px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+display: block;
+margin: 20px auto;
 }
 
 section {
-/* Cela ajoute un espace invisible au-dessus de la section quand on clique sur un lien */
 scroll-margin-top: 100px;
 }
+
 .contenu-menu a {
 display: block;
 padding: 10px;
@@ -177,12 +155,10 @@ font-family: 'Oswald', sans-serif;
 header {
 background-color: var(--white);
 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-/* Supprimez "position: sticky;" ici pour qu'il soit par défaut en normal */
 width: 100%;
 z-index: 1000;
 }
 
-/* Si vous voulez qu'il soit sticky UNIQUEMENT sur ordinateur */
 @media (min-width: 1025px) {
 header {
 position: sticky;
@@ -207,6 +183,16 @@ color: var(--primary);
 text-decoration: none;
 text-transform: uppercase;
 transition: transform 0.3s ease, color 0.3s ease;
+display: flex;
+align-items: center;
+gap: 12px; /* Espace entre le logo et le texte */
+}
+
+/* --- STYLE DU LOGO DANS LA NAVBAR --- */
+nav .logo img {
+height: 40px; /* Ajustez la hauteur de votre logo selon vos besoins */
+width: auto;
+display: block;
 }
 
 nav .logo:hover {
@@ -235,7 +221,7 @@ color: var(--secondary);
 .hero {
 background: linear-gradient(rgba(26, 95, 122, 0.4), rgba(21, 152, 149, 0.4)),
 url('https://cdn.polyhaven.com/gallery/Rohit%20Modak_lakeside_HodC.jpg?width=1517&quality=95') no-repeat center center/cover;
-width: 100%; /* Prend toute la largeur sur mobile */
+width: 100%;
 height: 60vh;
 display: flex;
 flex-direction: column;
@@ -244,19 +230,18 @@ align-items: center;
 text-align: center;
 color: var(--white);
 padding: 20px;
-margin: 0 auto; /* Centre la section */
+margin: 0 auto;
 }
 
-/* Sur ordinateur, on limite la largeur pour garder l'esthétique */
 @media (min-width: 769px) {
 .hero {
-max-width: 800px; /* Ou la largeur que vous préférez */
+max-width: 800px;
 }
 }
 
 .hero h1 {
 font-family: var(--font-titles);
-font-size: clamp(32px, 8vw, 56px); /* La taille s'adapte automatiquement */
+font-size: clamp(32px, 8vw, 56px);
 text-transform: uppercase;
 letter-spacing: 2px;
 margin-bottom: 10px;
@@ -302,30 +287,6 @@ background-color: var(--secondary);
 margin: 10px auto 0;
 }
 
-section h3 {
-font-size: 20px;
-
-margin-bottom: 20px;
-}
-
-.Notrehistoire-content p {
-margin-bottom: 15px;
-text-align: justify;
-line-height: 1.6;
-}
-
-.Notrehistoire-content ul {
-margin: 15px 0 25px 40px;
-/* Ajoute un retrait pour la liste */
-}
-
-.Notrehistoire-content li {
-margin-bottom: 5px;
-font-style: italic;
-/* Pour garder l'effet que vous aviez sur vos h5 */
-}
-
-/* --- STYLE DU BOUTON MATERIAL ICON --- */
 .btn-icon {
 display: inline-flex;
 align-items: center;
@@ -347,13 +308,6 @@ background-color: var(--secondary);
 transform: scale(1.05);
 }
 
-.btn-icon .material-symbols-outlined {
-font-size: 28px;
-
-}
-
-
-/* --- CALENDRIER (GRID) --- */
 .calendar-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -376,52 +330,16 @@ object-fit: contain;
 display: block;
 border-radius: 8px;
 margin-bottom: 15px;
-
 }
 
 .trip-card:hover {
 transform: translateY(-5px);
 }
 
-.trip-date {
-background-color: var(--primary);
-color: var(--white);
-padding: 10px 15px;
-font-weight: bold;
-font-size: 14px;
-}
-
-.trip-content {
-padding: 20px;
-}
-
-.trip-content h3 {
-font-family: var(--font-titles);
-font-size: 22px;
-text-transform: uppercase;
-margin-bottom: 10px;
-color: var(--primary);
-}
-
-.trip-price {
-display: block;
-font-family: var(--font-titles);
-font-size: 24px;
-color: var(--dark);
-margin-top: 15px;
-}
-
-/* --- VIDEOS (GRID) --- */
 .video-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 gap: 30px;
-}
-
-@media (max-width: 500px) {
-.video-grid {
-grid-template-columns: 1fr;
-}
 }
 
 .video-container {
@@ -441,9 +359,6 @@ width: 100%;
 height: 100%;
 border: 0;
 }
-
-/* --- AVIS CLIENTS --- */
-
 
 .reviews-grid {
 display: grid;
@@ -467,21 +382,8 @@ object-fit: contain;
 display: block;
 border-radius: 8px;
 margin-bottom: 15px;
-
 }
 
-.review-text {
-font-style: italic;
-margin-bottom: 15px;
-}
-
-.review-author {
-font-family: var(--font-titles);
-font-size: 18px;
-color: var(--primary);
-}
-
-/* --- FOOTER --- */
 footer {
 background-color: var(--primary);
 color: var(--white);
@@ -495,12 +397,13 @@ margin-top: 60px;
 
 <body>
 
-
-
 <!-- BARRE DE NAVIGATION -->
 <header>
 <nav>
-<a href="#" class="logo">Clem's Top Travel</a>
+<a href="#" class="logo">
+    <img src="assets/Clem’s Top Travel.webp*" alt="Clem's Top Travel">
+    
+</a>
 
 <!-- Le bouton Hamburger -->
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -532,18 +435,15 @@ margin-top: 60px;
 <a href="#Témoignages">Témoignages</a>
 </div>
 </li>
-
 </ul>
 </nav>
 </header>
-<!-- (La balise </nav> qui était ici a été supprimée) -->
-
 
 <!-- SECTION D'ACCUEIL -->
 <section class="hero">
 <h1>Le voyage et la liberté, enfin accessibles à tous.</h1>
 <p>Étudiant, salarié, indépendant, retraité ou en transition de vie ?
-    Clem's Top Travel vous ouvre les portes d'une opportunité unique : générez un complément de revenus, profitez d'avantages voyages exclusifs et travaillez avec passion, quel que soit votre âge.</p>
+Clem's Top Travel vous ouvre les portes d'une opportunité unique : générez un complément de revenus, profitez d'avantages voyages exclusifs et travaillez avec passion, quel que soit votre âge.</p>
 </section>
 
 <!-- SECTION Notre histoire-->
@@ -553,29 +453,23 @@ margin-top: 60px;
 </button>
 <h2>Qui sommes-nous ?</h2>
 
-<!-- Exemple d'insertion d'image -->
-
-<img src="assets/Clémence.webp" 
-alt="Clémence, fondatrice de Clem's Top Travel" class="photo-profil">
+<img src="assets/Clémence.webp" alt="Clémence, fondatrice de Clem's Top Travel" class="photo-profil">
 
 <div class="Notre histoire-content">
-<p><strong>Bienvenue dans mon univers !</strong>
+<p><strong>Bienvenue dans mon univers !</strong></p>
 <p>Je suis Clémence, 48 ans, maman de 4 enfants et passionnée par la liberté.</p>
 <p>J'ai passé de nombreuses années dans la fonction publique avant d'oser une première reconversion dans le secrétariat médical. Mais il me manquait encore quelque chose : cette étincelle de passion et de liberté au quotidien. J'ai donc décidé de ne pas faire de compromis et de chercher un projet professionnel qui me ressemble vraiment.</p>
-<p>C'est là que l'opportunité de travailler dans le marketing du voyage a croisé ma route. Ce fut le déclic pour allier épanouissement personnel, flexibilité et passion.
-Désormais, je suis apporteur d'affaires dans le domaine du voyage, et c'est avec un immense plaisir que j'accompagne ceux qui, comme moi, cherchent à redonner du sens à leur quotidien tout en explorant le monde.</p>
+<p>C'est là que l'opportunité de travailler dans le marketing du voyage a croisé ma route. Ce fut le déclic pour allier épanouissement personnel, flexibilité et passion.</p>
+<p>Désormais, je suis apporteur d'affaires dans le domaine du voyage, et c'est avec un immense plaisir que j'accompagne ceux qui, comme moi, cherchent à redonner du sens à leur quotidien tout en explorant le monde.</p>
 <p>Ma mission est de promouvoir les avantages voyages d'une plateforme privée qui permet de voyager moins cher que sur les sites classiques, tout en offrant la possibilité d'être rémunéré de manière fixe et évolutive. Cette plateforme existe depuis 13 ans et s'étend à l’international dans près de 70 pays.</p>
 <p>Le principe est simple : une plateforme, quatre sites, quatre fois plus de possibilités d'économiser pour se faire plaisir.</p>
 <p>Le fonctionnement est intuitif et vous donne accès à des offres privilégiées pour vos hôtels, locations de véhicules, croisières, vols longs-courriers, activités, et bien plus encore.</p>
 
-<p>Vous êtes séduit(e) par le concept ? Deux possibilités s'offrent à vous :<p>
-
-<p><strong> 1. Devenir Membre Privilège (Client)</strong><p>
-<p>Profitez simplement des avantages uniques de notre plateforme pour vos prochains voyages. Accédez à des tarifs exclusifs, économisez sur vos séjours et faites-vous plaisir sans contrainte.<p>
-
-<p><strong> 2. Devenir Partenaire (Client & Entrepreneur)</strong></p>
-<p>Alliez l'utile à l'agréable : profitez des mêmes avantages voyage, tout en partageant votre expérience autour de vous. C'est l'opportunité idéale pour générer un complément de revenu, de manière fixe et évolutive.<p>
-
+<p>Vous êtes séduit(e) par le concept ? Deux possibilités s'offrent à vous :</p>
+<p><strong>1. Devenir Membre Privilège (Client)</strong></p>
+<p>Profitez simplement des avantages uniques de notre plateforme pour vos prochains voyages. Accédez à des tarifs exclusifs, économisez sur vos séjours et faites-vous plaisir sans contrainte.</p>
+<p><strong>2. Devenir Partenaire (Client & Entrepreneur)</strong></p>
+<p>Alliez l'utile à l'agréable : profitez des mêmes avantages voyage, tout en partageant votre expérience autour de vous. C'est l'opportunité idéale pour générer un complément de revenu, de manière fixe et évolutive.</p>
 </div>
 </section>
 
@@ -588,22 +482,18 @@ Désormais, je suis apporteur d'affaires dans le domaine du voyage, et c'est ave
 
 <div class="calendar-grid">
 <div class="trip-card">
-<img id="review-image-maui" src="./assets\maui.webp" alt="Maui" class="review-box">
+<img src="./assets/maui.webp" alt="Maui">
 </div>
-
 <div class="trip-card">
-<img id="review-image-costa mujeres" src="./assets\costa mujeres.webp" alt="Costa mujeres"
-class="review-box">
+<img src="./assets/costa mujeres.webp" alt="Costa mujeres">
 </div>
-
 <div class="trip-card">
-<img id="review-image-Prague" src="./assets\Prague.webp" alt="Prague" class="review-box">
+<img src="./assets/Prague.webp" alt="Prague">
 </div>
 </div>
 </section>
 
 <!-- SECTION COMPARATIFS -->
-<!-- Votre section existante -->
 <section id="comparatifs-travel-site">
 <button class="btn-icon" data-target="comparatifs-travel-site">
 <img src="icones/balance.webp" alt="Icône comparaison" width="24" height="24">
@@ -612,40 +502,28 @@ class="review-box">
 
 <div class="calendar-grid">
 <div class="trip-card">
-<img id="review-image-Travel site Logement Cancun" src="./assets\Travel site logement Cancun.webp"
-alt="Cancun" class="review-box">
+<img src="./assets/Travel site logement Cancun.webp" alt="Cancun">
 </div>
-
 <div class="trip-card">
-<img id="review-image-Travel site Croisière Grèce" src="./assets\Travel site Croisière Grèce.webp"
-alt="Croisière" class="review-box">
+<img src="./assets/Travel site Croisière Grèce.webp" alt="Croisière">
 </div>
-
 <div class="trip-card">
-<img id="review-image-Travel site Bali River activité"
-src="./assets\Travel site Bali River activité.webp" alt="Activité" class="review-box">
+<img src="./assets/Travel site Bali River activité.webp" alt="Activité">
 </div>
 </div>
 </section>
 
-<!-- Ajoutez ces deux nouvelles sections en bas de votre page -->
 <section id="comparatifs-world-tour">
 <h2>Nos économies en World Tour</h2>
 <div class="calendar-grid">
 <div class="trip-card">
-<img id="review-image-Worldtour Colombie" src="./assets\Worldtour Colombie.webp"
-alt="Worldtour Colombie" class="review-box">
+<img src="./assets/Worldtour Colombie.webp" alt="Worldtour Colombie">
 </div>
-
 <div class="trip-card">
-<img id="review-image-Worldtour Crète" src="./assets\Worldtour Crète.webp"
-alt="Worldtour Crète" class="review-box">
+<img src="./assets/Worldtour Crète.webp" alt="Worldtour Crète">
 </div>
-
 <div class="trip-card">
-<img id="review-image-Worldtour Doha"
-src="./assets\Worldtour Doha.webp"
-alt="Worldtour Doha" class="review-box">
+<img src="./assets/Worldtour Doha.webp" alt="Worldtour Doha">
 </div>
 </div>
 </section>
@@ -654,26 +532,15 @@ alt="Worldtour Doha" class="review-box">
 <h2>Nos économies en Getaway</h2>
 <div class="calendar-grid">
 <div class="trip-card">
-<img id="review-image-Getaway Afrique Du Sud"
-src="./assets\Getaway Afrique Du Sud.webp"
-alt="Getaway Afrique Du Sud" class="review-box">
+<img src="./assets/Getaway Afrique Du Sud.webp" alt="Getaway Afrique Du Sud">
 </div>
-
 <div class="trip-card">
-<img id="review-image-Getaway Alicante"
-src="./assets\Getaway Alicante.webp"
-alt="Getaway Alicante" class="review-box">
+<img src="./assets/Getaway Alicante.webp" alt="Getaway Alicante">
 </div>
-
 <div class="trip-card">
-<img id="review-image-Getaway Angleterre"
-src="./assets\Getaway Angleterre.webp"
-alt="image-Getaway Angleterre" class="review-box">
+<img src="./assets/Getaway Angleterre.webp" alt="image-Getaway Angleterre">
 </div>
 </div>
-</section>
-
-
 </section>
 
 <!-- SECTION DERNIÈRES VIDÉOS -->
@@ -701,15 +568,13 @@ title="Lien Présentation replay" allowfullscreen></iframe>
 
 <div class="reviews-grid">
 <div class="review-card">
-<img id="review-image-Agathe" src="./assets\Agathe - Albanie.webp" alt="Avis Agathe" class="review-box">
+<img src="./assets/Agathe - Albanie.webp" alt="Avis Agathe">
 </div>
-
 <div class="review-card">
-<img id="review-image-Amélie" src="./assets\Amélie - Grèce.webp" alt="Avis Amélie" class="review-box">
+<img src="./assets/Amélie - Grèce.webp" alt="Avis Amélie">
 </div>
-
 <div class="review-card">
-<img id="review-image-Emma" src="./assets\Emma - Prague.webp" alt="Avis Emma" class="review-box">
+<img src="./assets/Emma - Prague.webp" alt="Avis Emma">
 </div>
 </div>
 </section>
@@ -723,15 +588,13 @@ title="Lien Présentation replay" allowfullscreen></iframe>
 
 <div class="reviews-grid">
 <div class="review-card">
-<img id="review-image-Laurie S" src="./assets\Laurie S.webp" alt="Témoignage Laurie" class="review-box">
+<img src="./assets/Laurie S.webp" alt="Témoignage Laurie">
 </div>
-
 <div class="review-card">
-<img id="review-image-Félix" src="./assets\Félix.webp" alt="Témoignage Félix" class="review-box">
+<img src="./assets/Félix.webp" alt="Témoignage Félix">
 </div>
-
 <div class="review-card">
-<img id="review-image-Armelle" src="./assets\Armelle.webp" alt="Témoignage Armelle" class="review-box">
+<img src="./assets/Armelle.webp" alt="Témoignage Armelle">
 </div>
 </div>
 </section>
@@ -743,13 +606,9 @@ title="Lien Présentation replay" allowfullscreen></iframe>
 </button>
 <h2>Prêt(e) à vous lancer ?</h2>
 <p>Que vous souhaitiez devenir <strong>Membre Privilège</strong> pour voyager à prix réduit ou <strong>Partenaire</strong> pour booster vos revenus, je suis à votre écoute.</p>
-
 <p>Il vous suffit de me contacter par mail ou via Instagram. Nous conviendrons ensuite d'un court échange téléphonique, sans engagement, afin que je puisse répondre à toutes vos interrogations et vous guider selon vos besoins.</p>
-<a href="mailto:clemstoptravel@gmail.com"></a>
-   <p> Envoyez-moi un mail : [clemstoptravel@gmail.com]</p>
-<a href="[https://www.instagram.com/clems_top_travel/]" target="_blank"></a>
-   <p> Rejoignez-moi sur Instagram : [@clems_top_travel]</p>
-
+<p>Envoyez-moi un mail : <a href="mailto:clemstoptravel@gmail.com">clemstoptravel@gmail.com</a></p>
+<p>Rejoignez-moi sur Instagram : <a href="https://www.instagram.com/clems_top_travel/" target="_blank">@clems_top_travel</a></p>
 </section>
 
 <!-- SECTION FAQ -->
@@ -761,35 +620,37 @@ title="Lien Présentation replay" allowfullscreen></iframe>
 <details>
 <summary>1. Faut-il avoir des compétences particulières pour se lancer ?</summary>
 <p>Pas du tout ! Vous n’avez besoin d’aucunes compétences pour faire du marketing de réseau car vous le faites déjà dans votre vie de tous les jours. En partageant à un restaurant, un film ou autres que vous avez aimé à votre entourage. Sauf que là, vous êtes rémunéré.
-Une formation gratuite et complète est disponible dès votre adhésion pour vous aider dans votre job. Elle regroupe différents domaines comme la création de contenu, les réseaux sociaux, le marketing et l’entrepreneuriat. </p>
+Une formation gratuite et complète est disponible dès votre adhésion pour vous aider dans votre job. Elle regroupe différents domaines comme la création de contenu, les réseaux sociaux, le marketing et l’entrepreneuriat.</p>
 </details>
 <details>
 <summary>2. Combien de temps dois-je consacrer à cette activité de partenaire ?</summary>
-<p>C'est la grande force de cette opportunité : elle s'adapte à votre emploi du temps. Que vous ayez quelques heures par semaine à côté de votre travail ou plus de temps libre, vous avancez à votre rythme. C'est vous qui fixez vos objectifs. Nous préconisons 1h à 3h minimum par jour que vous pouvez la répartir dans la journée (au petit déjeuner, au café, le soir…).
-</p></details>
+<p>C'est la grande force de cette opportunité : elle s'adapte à votre emploi du temps. Que vous ayez quelques heures par semaine à côté de votre travail ou plus de temps libre, vous avancez à votre rythme. C'est vous qui fixez vos objectifs. Nous préconisons 1h à 3h minimum par jour que vous pouvez la répartir dans la journée (au petit déjeuner, au café, le soir…).</p>
+</details>
 <details>
 <summary>3. Est-ce vraiment moins cher que les sites de réservation classiques ?</summary>
-<p>Oui. Contrairement aux sites grand public qui investissent énormément en publicité (ce qui augmente les prix), notre plateforme fonctionne sur un modèle privé de membres. Ces économies sont directement répercutées sur les prix que vous payez.
-</p></details>
+<p>Oui. Contrairement aux sites grand public qui investissent énormément en publicité (ce qui augmente les prix), notre plateforme fonctionne sur un modèle privé de membres. Ces économies sont directement répercutées sur les prix que vous payez.</p>
+</details>
 <details>
 <summary>4. Est-ce un système pyramidal ?</summary>
-<p>Non. Il s'agit de marketing relationnel (ou marketing de réseau). C'est un modèle économique légal où la rémunération provient de la vente de services réels (voyages) et de la recommandation, et non pas d'un simple recrutement de personnes. Les sociétés comme Tupperware et Thermomix utilisent ce type de modèle en comptant sur leurs clients pour se faire connaître.
-</p></details>
+<p>Non. Il s'agit de marketing relationnel (ou marketing de réseau). C'est un modèle économique légal où la rémunération provient de la vente de services réels (voyages) et de la recommandation, et non pas d'un simple recrutement de personnes. Les sociétés comme Tupperware et Thermomix utilisent ce type de modèle en comptant sur leurs clients pour se faire connaître.</p>
+</details>
 <details>
 <summary>5. Quel âge faut-il avoir pour devenir partenaire ?</summary>
-<p>Il n'y a pas d'âge limite ! Que vous soyez étudiant pour financer vos études, actif en quête de reconversion, ou retraité souhaitant compléter ses revenus tout en voyageant, cette activité est ouverte à tous ceux qui ont l'envie d'apprendre et de partager. Nous avons des partenaires de 18 ans mais aussi une qui a 70 ans.
-</p></details>
+<p>Il n'y a pas d'âge limite ! Que vous soyez étudiant pour financer vos études, actif en quête de reconversion, ou retraité souhaitant compléter ses revenus tout en voyageant, cette activité est ouverte à tous ceux qui ont l'envie d'apprendre et de partager. Nous avons des partenaires de 18 ans mais aussi une qui a 70 ans.</p>
+</details>
 <details>
 <summary>6. Que se passe-t-il après mon premier contact avec vous ?</summary>
-<p>Nous prenons un temps d'échange par téléphone pour faire connaissance. Je vous poserai des questions pour comprendre vos attentes, et je vous présenterai concrètement le fonctionnement de la plateforme. C'est un échange informel et sans aucun engagement.
-</p></details>
+<p>Nous prenons un temps d'échange par téléphone pour faire connaissance. Je vous poserai des questions pour comprendre vos attentes, et je vous présenterai concrètement le fonctionnement de la plateforme. C'est un échange informel et sans aucun engagement.</p>
+</details>
 <details>
 <summary>7. Est-ce que je peux être seulement client ?</summary>
-<p>Oui en effet. Vous pouvez profiter des avantages voyages sans faire le job. Ce sont les mêmes avantages que pour les partenaires.
-</p></details>
+<p>Oui en effet. Vous pouvez profiter des avantages voyages sans faire le job. Ce sont les mêmes avantages que pour les partenaires.</p>
+</details>
+<details>
 <summary>8. Est-ce que je suis obligée d’utiliser les réseaux sociaux ?</summary>
-<p>Non pas du tout. SI vous n’êtes pas à l’aise avec les réseaux, vous pouvez utiliser des flyers, faire des réunions comme pour Thermomix ou Tupperware. 
-</p></details>
+<p>Non pas du tout. Si vous n’êtes pas à l’aise avec les réseaux, vous pouvez utiliser des flyers, faire des réunions comme pour Thermomix ou Tupperware.</p>
+</details>
+</section>
 
 <!-- PIED DE PAGE -->
 <footer>
@@ -797,7 +658,6 @@ Une formation gratuite et complète est disponible dès votre adhésion pour vou
 </footer>
 
 <script>
-// Effet de clic sur les boutons d'icônes pour recentrer la section correspondante
 document.querySelectorAll('.btn-icon').forEach(button => {
 button.addEventListener('click', () => {
 const targetId = button.getAttribute('data-target');
@@ -807,14 +667,12 @@ targetSection.scrollIntoView({ behavior: 'smooth' });
 }
 });
 });
-</script>
-<script>
+
 function toggleMenu() {
 const navLinks = document.getElementById('nav-links');
 navLinks.classList.toggle('active');
 }
 
-// Ferme le menu si on clique sur un lien (pour ne pas rester bloqué)
 document.querySelectorAll('#nav-links a').forEach(link => {
 link.addEventListener('click', () => {
 document.getElementById('nav-links').classList.remove('active');
@@ -822,6 +680,4 @@ document.getElementById('nav-links').classList.remove('active');
 });
 </script>
 </body>
-
 </html>
-
